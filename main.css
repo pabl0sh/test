@@ -1,0 +1,536 @@
+:root {
+    --primary-font: 'Cormorant Garamond', serif;
+    --secondary-font: 'Montserrat', sans-serif;
+    
+    /* НАЛАШТУВАННЯ ОКРЕМИХ ФОНІВ ДЛЯ КОЖНОЇ СЕКЦІЇ */
+    --envelope-bg-image: url('background_two.jpg');   /* Фон для конверта */
+    --hero-bg-image: url('background_three.jpg');     /* Фон для головного екрану */
+
+    /* ПАЛІТРА ДЛЯ ЧОРНОГО ОБ'ЄМНОГО КОНВЕРТА */
+    --env-paper: #1a1a1a;     
+    --env-shadow: #111111;    
+    --env-border: rgba(255, 255, 255, 0.15); 
+
+    /* ПАЛІТРА ДЛЯ ІНШИХ СЕКЦІЙ САЙТУ */
+    --site-text-light: #ffffff;
+    --site-text-dark: #2c2c2c; /* Темний колір для тексту на білому тлі */
+    
+    /* ПОВНІСТЮ ПРОЗОРИЙ ЧИСТИЙ СТИЛЬ БЕЗ СІРОСТІ ТА МАТОВОСТІ */
+    --card-glass-bg: transparent; 
+    --card-glass-border: rgba(255, 255, 255, 0.25);
+}
+
+/* Глобальні налаштування */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: var(--secondary-font);
+    overflow-x: hidden;
+    background-color: #fcfbfa;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* --- СЕКЦІЯ 1: КОНВЕРТ З ТЕКСТОМ У САМОМУ ВЕРХУ --- */
+.envelope-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999999;
+    overflow: hidden;
+    background: transparent;
+    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+}
+
+.blur-background {
+    position: absolute;
+    width: 100%; height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), var(--envelope-bg-image) no-repeat center center/cover;
+    filter: grayscale(100%);
+    z-index: 1;
+}
+
+.envelope-container {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 60px 20px 40px;
+    perspective: 2000px;
+}
+
+.envelope-text-group {
+    margin-bottom: auto;
+}
+
+.envelope-title {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+}
+
+.envelope-names {
+    font-family: var(--primary-font);
+    font-size: 2.4rem;
+    font-style: italic;
+    font-weight: 400;
+    color: #ffffff;
+    margin: 0;
+    text-shadow: 0 2px 15px rgba(0,0,0,0.8);
+}
+
+.envelope-names span {
+    display: block;
+    text-align: center;
+    line-height: 1.2;
+}
+
+.envelope-names .envelope-conjunction {
+    font-size: 1.2rem;        
+    opacity: 0.7;
+    letter-spacing: 2px;
+    margin: 4px 0;            
+    font-style: italic;       
+}
+
+.envelope-wrapper {
+    position: relative;
+    width: 320px;
+    height: 220px;
+    margin: auto auto 40px;
+    cursor: pointer;
+}
+
+.envelope {
+    width: 100%; height: 100%;
+    position: relative;
+}
+
+.envelope-back {
+    position: absolute;
+    width: 100%; height: 100%;
+    background: var(--env-shadow);
+    border-radius: 4px;
+    box-shadow: 0 35px 70px rgba(0, 0, 0, 0.75);
+}
+
+.envelope-front {
+    position: absolute;
+    width: 100%; height: 100%;
+    background: var(--env-paper);
+    clip-path: polygon(0% 25%, 50% 72%, 100% 25%, 100% 100%, 0% 100%);
+    border-radius: 4px;
+    z-index: 3;
+    filter: drop-shadow(0px -2px 4px rgba(255, 255, 255, 0.03)) drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.5));
+}
+
+.envelope-top {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(to bottom, #242424, var(--env-paper));
+    clip-path: polygon(0% 0%, 50% 80%, 100% 0%);
+    transform-origin: top center;
+    transition: transform 0.75s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 4;
+    border-radius: 4px 4px 0 0;
+    filter: drop-shadow(0px 10px 18px rgba(0, 0, 0, 0.6));
+}
+
+.envelope-top::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: transparent;
+    clip-path: polygon(3% 0%, 50% 76%, 97% 0%, 94% 0%, 50% 72%, 6% 0%);
+    background-color: var(--env-border);
+}
+
+.envelope-top::after {
+    content: 'W'; 
+    position: absolute;
+    top: 35%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: var(--primary-font);
+    font-size: 1.6rem;
+    color: rgba(255, 255, 255, 0.25);
+    font-style: italic;
+    letter-spacing: 2px;
+}
+
+.letter {
+    position: absolute;
+    bottom: 8px; left: 18px;
+    width: 284px;
+    height: 200px;
+    background: #ffffff;
+    border-radius: 2px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    transition: transform 0.75s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.letter-content {
+    text-align: center;
+    border: 1px solid #1a1a1a;
+    width: calc(100% - 20px);
+    height: calc(100% - 20px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.letter-main {
+    font-family: var(--primary-font);
+    font-size: 1.8rem;
+    color: #1a1a1a; 
+}
+
+.letter-sub {
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #777;
+    margin-top: 4px;
+}
+
+.envelope-hint {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.55);
+    letter-spacing: 1px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    animation: pulseHint 2s infinite;
+}
+
+.envelope-wrapper.open .envelope-top {
+    transform: rotateX(180deg);
+    z-index: 1;
+    filter: drop-shadow(0px -10px 15px rgba(0, 0, 0, 0.3));
+}
+
+.envelope-wrapper.open .letter {
+    transform: translateY(-120px) scale(1.02);
+    z-index: 5;
+}
+
+.envelope-overlay.fade-out {
+    opacity: 0;
+    transform: translateY(-100vh);
+    pointer-events: none;
+}
+
+/* --- СЕКЦІЯ 2: ГОЛОВНИЙ ЕКРАН (HERO) --- */
+.hero-section {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)), var(--hero-bg-image) no-repeat center center/cover;
+    padding: 20px;
+}
+
+.hero-tagline {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.9);
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+    opacity: 0;
+    will-change: opacity;
+}
+
+.hero-tagline span {
+    font-family: var(--primary-font);
+    text-transform: lowercase;
+    font-style: italic;
+    font-size: 1.1rem;
+    letter-spacing: 0;
+}
+
+.glass-card {
+    background: var(--card-glass-bg); 
+    border: 1px solid var(--card-glass-border); 
+    padding: 45px 30px;
+    width: 100%;
+    max-width: 340px;
+    text-align: center;
+    border-radius: 4px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2); 
+    opacity: 0;
+    will-change: transform, opacity;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.hero-names {
+    font-family: var(--primary-font);
+    font-size: 3.2rem;
+    font-weight: 400;
+    color: var(--site-text-light);
+    line-height: 1.1;
+    letter-spacing: 1px;
+}
+
+.hero-date {
+    font-size: 1.1rem;
+    color: var(--site-text-light);
+    letter-spacing: 3px;
+    margin-top: 35px;
+    opacity: 0;
+    will-change: opacity;
+}
+
+.scroll-arrow {
+    position: absolute;
+    bottom: 30px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.8rem;
+    animation: bounceArrow 2s infinite;
+}
+
+/* --- СЕКЦІЯ 3: ТЕКСТОВЕ ЗАПРОШЕННЯ (ІДЕАЛЬНО БІЛА) --- */
+.invitation-section {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 30px 20px;
+    box-sizing: border-box;
+}
+
+.invitation-card {
+    /* background: rgba(0, 0, 0, 0.02); */
+    background: linear-gradient(135deg, #fdfbf7 0%, #f5ece9 100%);
+
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    padding: 40px 25px;
+    width: 100%;
+    max-width: 340px;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    border-radius: 4px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.04);
+    box-sizing: border-box;
+    
+    /* Ефект м'якого проявлення самої картки */
+    opacity: 0;
+    will-change: opacity, transform;
+}
+
+/* Коли користувач доскролить, запускається ця анімація для картки */
+.invitation-section.scrolled-into-view .invitation-card {
+    animation: revealCard 1.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.wedding-logo {
+    width: 50px;
+    height: 50px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.wedding-logo span {
+    font-family: var(--secondary-font);
+    font-size: 0.75rem;
+    color: var(--site-text-dark);
+    letter-spacing: 1px;
+}
+
+.invitation-title {
+    font-family: var(--primary-font);
+    font-size: 2.5rem;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--site-text-dark);
+    margin-bottom: 10px;
+}
+
+.invitation-text-block {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+}
+
+.accent-text {
+    font-family: var(--primary-font);
+    font-size: 1.4rem;
+    color: var(--site-text-dark);
+    font-weight: 400;
+}
+
+.main-text {
+    font-family: var(--secondary-font);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #555555;
+    font-weight: 300;
+}
+
+.wedding-icon-arch {
+    width: 40px;
+    height: 60px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-bottom: none;
+    border-radius: 40px 40px 0 0;
+    margin-top: 20px;
+    position: relative;
+}
+
+.wedding-icon-arch::before {
+    content: '';
+    position: absolute;
+    top: 30%; left: 0; width: 100%; height: 1px;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+/* --- СТИЛІ ЕФЕКТІВ ДЛЯ ЕЛЕМЕНТІВ ВСЕРЕДИНІ КАРТКИ --- */
+.invitation-section .anim-fade-scale,
+.invitation-section .anim-letter-spacing,
+.invitation-section .anim-fade-in {
+    opacity: 0;
+    will-change: opacity, transform, letter-spacing;
+}
+
+/* 1. Поява монограми (масштабування) */
+.invitation-section.scrolled-into-view .anim-fade-scale {
+    animation: fadeScaleEffect 1s ease-out forwards;
+}
+
+/* 2. Текстове розгортання літер від центру (для заголовків) */
+.invitation-section.scrolled-into-view .anim-letter-spacing {
+    animation: letterExpandEffect 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* 3. Плавне проявлення основного блоку тексту сторінки */
+.invitation-section.scrolled-into-view .anim-fade-in {
+    animation: fadeInEffectOnly 1.2s ease-out forwards;
+}
+
+/* Таблиця часових затримок для поетапного включення */
+.invitation-section.scrolled-into-view .delay-1 { animation-delay: 0.3s; }
+.invitation-section.scrolled-into-view .delay-2 { animation-delay: 0.6s; }
+.invitation-section.scrolled-into-view .delay-3 { animation-delay: 1.0s; }
+.invitation-section.scrolled-into-view .delay-4 { animation-delay: 1.4s; }
+
+
+/* --- КЛЮЧОВІ КАДРИ НЕШАБЛОННИХ АНІМАЦІЙ --- */
+
+/* Розкриття меж картки */
+@keyframes revealCard {
+    from {
+        opacity: 0;
+        transform: scaleY(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+}
+
+/* Розширення інтервалу літер */
+@keyframes letterExpandEffect {
+    from {
+        opacity: 0;
+        letter-spacing: -2px;
+    }
+    to {
+        opacity: 1;
+        letter-spacing: normal; /* повертає стандарт весільних шрифтів */
+    }
+}
+
+@keyframes fadeScaleEffect {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeInEffectOnly {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+
+/* --- КАСКАДНІ АНІМАЦІЇ ПОЯВИ ЕЛЕМЕНТІВ --- */
+body.opened .glass-card {
+    animation: slideUpCard 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.1s forwards;
+}
+
+body.opened .hero-tagline {
+    animation: fadeInText 1s ease-out 0.4s forwards;
+}
+
+body.opened .hero-names .name-1 {
+    display: block;
+animation: slideUpText 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.8s forwards;opacity: 0;}
+body.opened .hero-names .ampersand {display: inline-block;margin: 10px 0;animation: fadeInText 0.8s ease-out 1.2s forwards;opacity: 0;}body.opened .hero-names .name-2 {display: block;animation: slideUpText 0.8s cubic-bezier(0.25, 1, 0.5, 1) 1.5s forwards;opacity: 0;}body.opened .hero-date {animation: fadeInText 1s ease-out 2.0s forwards;}/* КЛЮЧОВІ КАДРИ */@keyframes slideUpCard {from { opacity: 0; transform: translateY(60px); }to { opacity: 1; transform: translateY(0); }}@keyframes slideUpText {from { opacity: 0; transform: translateY(20px); }to { opacity: 1; transform: translateY(0); }}@keyframes fadeInText {from { opacity: 0; }to { opacity: 1; }}@keyframes pulseHint {0%, 100% { opacity: 0.4; }50% { opacity: 1; }}@keyframes bounceArrow {0%, 20%, 50%, 80%, 100% { transform: translateY(1); }40% { transform: translateY(-8px); }60% { transform: translateY(-4px); }}
+/* --- СТИЛІ ДЛЯ ФОТОГРАФІЇ БРАМИ В НИЖНІЙ ЧАСТИНІ КАРТКИ --- */
+.wedding-gate-photo {
+    width: 200px;
+    height: 220px;
+    
+    /* Створює акуратне заокруглення купола зверху, як у весільної арки */
+    border-radius: 40px 40px 0 0; 
+    
+    /* Ідеально вписує фотографію в задані розміри без деформацій */
+    object-fit: cover; 
+    
+    /* Додає витончену тонку рамку навколо фотографії під стиль монограми */
+    /* border: 1px solid rgba(0, 0, 0, 0.12);  */
+    border-bottom: none;
+    
+    margin-top: 20px;
+    display: block;
+    
+    /* Початковий стан для роботи скролл-анімації */
+    opacity: 0;
+    will-change: opacity, transform;
+}
+
+/* Інтеграція нової фотографії в існуючу скролл-анімацію */
+.invitation-section.scrolled-into-view .wedding-gate-photo.anim-fade-scale {
+    animation: fadeScaleEffect 1s ease-out forwards;
+}
