@@ -9,6 +9,9 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -19,14 +22,12 @@
 </audio>
 
 <button id="musicToggle" class="music-toggle-btn" aria-label="Увімкнути або вимкнути музику">
-    <!-- Іконка "Грає" (Звукові хвилі) -->
     <svg class="music-icon icon-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
         <path d="M11 5L6 9H2V15H6L11 19V5Z" stroke-linejoin="round"/>
         <path class="wave wave-1" d="M15.5 8.5C16.8 9.8 16.8 12.2 15.5 13.5" stroke-linecap="round"/>
         <path class="wave wave-2" d="M18.5 5.5C21 8 21 14 18.5 16.5" stroke-linecap="round"/>
     </svg>
 
-    <!-- Іконка "Музика вимкнена" (Закреслена) -->
     <svg class="music-icon icon-mute" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
         <path d="M11 5L6 9H2V15H6L11 19V5Z" stroke-linejoin="round"/>
         <line x1="23" y1="9" x2="17" y2="15" stroke-linecap="round"/>
@@ -34,6 +35,7 @@
     </svg>
 </button>
 
+    <!-- КОНВЕРТ OVERLAY -->
     <div id="envelope-overlay" class="envelope-overlay">
         <div class="blur-background"></div>
         <div class="envelope-container">
@@ -62,44 +64,63 @@
         </div>
     </div>
 
-    <section class="hero-section">
-        <p class="hero-tagline">SAVE <span>the</span> DATE</p>
+<!-- HERO SECTION -->
+<section class="hero-section">
+    <!-- Мереживні рамки -->
+    <div class="hero-lace lace-top"></div>
+    <div class="hero-lace lace-bottom"></div>
+    <div class="hero-lace lace-left"></div>
+    <div class="hero-lace lace-right"></div>
+
+    <!-- Єдиний екземпляр теглайну -->
+    <p class="hero-tagline">SAVE <span>the</span> DATE</p>
+
+    <!-- Імена, які раніше були всередині glass-card -->
+    <h2 class="hero-names">
+        <span class="name-1 great-vibes-regular">Михайло</span>
+        <span class="ampersand">&</span>
+        <span class="name-2 great-vibes-regular">Лариса</span>
+    </h2>
+
+    <!-- Єдиний екземпляр дати -->
+    <p class="hero-date">24.10.2026</p>
+
+</section>
+
+<!-- INVITATION SECTION -->
+<section class="invitation-section" id="invitation-section">
+    <div class="invitation-content">
         
-        <div class="glass-card">
-            <h2 class="hero-names">
-                <span class="name-1">Михайло</span>
-                <span class="ampersand">&</span>
-                <span class="name-2">Лариса</span>
-            </h2>
+        <!-- Верхня деталь: Монограма ініціалів -->
+        <div class="invitation-badge anim-row">
+            <span class="badge-initials">M & L</span>
         </div>
+
+        <div class="invitation-divider anim-row">
+            <span class="divider-line"></span>
+            <span class="divider-diamond">◆</span>
+            <span class="divider-line"></span>
+        </div>
+
+        <h3 class="invitation-title anim-row">Дорогі гості!</h3>
         
-        <p class="hero-date">24.10.2026</p>
-        <div class="scroll-arrow">▼</div>
-    </section>
-
-    <section class="invitation-section" id="invitation-section">
-        <div class="invitation-card">
-            <div class="card-inner-border">
-                <div class="wedding-logo anim-row">
-                    <span>М&Л</span>
-                </div>
-                
-                <div class="divider-line anim-row"></div>
-
-                <h3 class="invitation-title anim-row">Дорогі гості!</h3>
-                
-                <p class="accent-text anim-row">Запрошуємо вас розділити з нами цей особливий день</p>
-                <p class="main-text anim-row">
-                    Ваша присутність та щирі посмішки зроблять наше свято по-справжньому незабутнім та теплим.
-                </p>
-                
-                <div class="gate-wrapper anim-row">
-                    <img src="brama.png" alt="Весільна брама" class="wedding-gate-photo">
-                </div>
+        <p class="accent-text anim-row">Запрошуємо вас розділити з нами цей особливий день</p>
+        
+        <p class="main-text anim-row">
+            Ваша присутність та щирі посмішки зроблять наше свято по-справжньому незабутнім та теплим.
+        </p>
+        
+        <!-- Нижній акцент: Фото у вишуканій подвійній рамці -->
+        <div class="gate-wrapper anim-row">
+            <div class="gate-frame">
+                <img src="brama.png" alt="Весільна брама" class="wedding-gate-photo">
             </div>
         </div>
-    </section>
 
+    </div>
+</section>
+
+    <!-- PHOTO SECTION -->
     <section class="photo-section" id="photo-section">
         <div class="photo-card-wrapper">
             <div class="photo-card">
@@ -114,110 +135,135 @@
         </div>
     </section>
 
+    <!-- LOCATION SECTION -->
     <section class="location-section" id="location-section">
         <div class="location-container">
             <p class="location-subtitle">Святкуватимемо у</p>
-            <h3 class="location-title">«ДЕРЕНІВСЬКА КУПІЛЬ»</h3>
+            <h3 class="location-title">«ПУЗАТИЙ ШЕФ»</h3>
             <p class="location-address">
-                с. Нижнє Солотвино, 150,<br>
+                м. Виноградів, вул. Комунальна 21б,<br>
                 Закарпатська область, Україна
             </p>
             
-            <a href="https://maps.google.com" target="_blank" class="location-btn">
+            <a href="https://maps.app.goo.gl/13PJkfa9r1PXG35X7" target="_blank" class="location-btn">
                 ПОКАЗАТИ НА КАРТІ
             </a>
         </div>
     </section>
 
-    <section class="schedule-section" id="schedule-section">
-        <div class="schedule-overlay"></div>
-        <div class="schedule-container">
-            <h3 class="schedule-title">ТАЙМІНГ ДНЯ</h3>
-            
-            <div class="schedule-grid">
-                <div class="schedule-item">
-                    <div class="schedule-icon">
-                        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8">
-                            <path d="M18 12 L28 12 L23 32 L23 52 M17 52 L29 52" />
-                            <path d="M38 8 L50 8 L44 28 L44 52 M38 52 L50 52" />
-                            <path d="M12 20 C20 18, 26 22, 32 20" stroke-dasharray="2 2" />
-                        </svg>
-                    </div>
-                    <span class="schedule-time">15:00</span>
-                    <span class="schedule-label">WELCOME DRINK</span>
-                </div>
+  <!-- SCHEDULE SECTION -->
+<section class="schedule-section" id="schedule-section">
+    <!-- Багатошаровий преміальний оверлей -->
+    <div class="schedule-overlay"></div>
 
-                <div class="schedule-item">
-                    <div class="schedule-icon">
-                        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8">
-                            <rect x="18" y="24" width="28" height="26" rx="4" />
-                            <path d="M18 32 L46 32" />
-                            <path d="M26 24 C26 16, 38 16, 38 24" />
-                            <circle cx="32" cy="20" r="3" />
-                        </svg>
-                    </div>
-                    <span class="schedule-time">15:30</span>
-                    <span class="schedule-label">ЦЕРЕМОНІЯ</span>
-                </div>
-
-                <div class="schedule-item">
-                    <div class="schedule-icon">
-                        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8">
-                            <circle cx="32" cy="32" r="20" />
-                            <circle cx="32" cy="32" r="13" />
-                            <path d="M10 16 L10 48 M14 16 L14 28 M6 16 L6 28" />
-                            <path d="M54 16 L54 48 M50 16 L54 28" />
-                        </svg>
-                    </div>
-                    <span class="schedule-time">16:00</span>
-                    <span class="schedule-label">БАНКЕТ</span>
-                </div>
-
-                <div class="schedule-item">
-                    <div class="schedule-icon">
-                        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8">
-                            <path d="M22 22 L42 22 L40 32 L24 32 Z" />
-                            <path d="M16 32 L48 32 L46 46 L18 46 Z" />
-                            <path d="M10 46 L54 46 L52 52 L12 52 Z" />
-                            <path d="M32 14 C32 14, 30 18, 32 22" />
-                        </svg>
-                    </div>
-                    <span class="schedule-time">21:00</span>
-                    <span class="schedule-label">ТОРТ</span>
-                </div>
-
-                <div class="schedule-item">
-                    <div class="schedule-icon">
-                        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8">
-                            <path d="M32 40 L32 18 M32 40 L20 50 M32 40 L44 50 M32 40 L18 32 M32 40 L46 32" />
-                            <circle cx="32" cy="14" r="2" fill="currentColor" />
-                            <circle cx="16" cy="28" r="1.5" fill="currentColor" />
-                            <circle cx="48" cy="28" r="1.5" fill="currentColor" />
-                            <circle cx="22" cy="48" r="1.5" fill="currentColor" />
-                            <circle cx="42" cy="48" r="1.5" fill="currentColor" />
-                        </svg>
-                    </div>
-                    <span class="schedule-time">22:00</span>
-                    <span class="schedule-label">ЗАВЕРШЕННЯ</span>
-                </div>
-
-                <div class="schedule-item">
-                    <div class="schedule-icon">
-                        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8">
-                            <circle cx="32" cy="34" r="18" />
-                            <path d="M32 8 L32 16" />
-                            <path d="M18 34 L46 34 M32 16 L32 52" />
-                            <path d="M20 24 C26 28, 38 28, 44 24" />
-                            <path d="M20 44 C26 40, 38 40, 44 44" />
-                        </svg>
-                    </div>
-                    <span class="schedule-time">00:00</span>
-                    <span class="schedule-label">AFTER PARTY</span>
-                </div>
+    <div class="schedule-container">
+        <!-- Елегантна шапка -->
+        <div class="schedule-header">
+            <span class="schedule-subtitle">TIMELINE</span>
+            <h2 class="schedule-title">ТАЙМІНГ ДНЯ</h2>
+            <div class="schedule-divider">
+                <span class="line"></span>
+                <span class="diamond">◆</span>
+                <span class="line"></span>
             </div>
         </div>
-    </section>
 
+        <!-- Сітка елементів -->
+        <div class="schedule-grid">
+    
+    <!-- 1. WELCOME DRINK (З посиланням) -->
+    <div class="schedule-item clickable" data-link="https://maps.app.goo.gl/MDcaHuzs5EnwkB5G9">
+        <div class="schedule-icon-box">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M18 12 L28 12 L23 32 L23 52 M17 52 L29 52" />
+                <path d="M38 8 L50 8 L44 28 L44 52 M38 52 L50 52" />
+                <path d="M12 20 C20 18, 26 22, 32 20" stroke-dasharray="2 2" />
+            </svg>
+        </div>
+        <span class="schedule-time">10:00</span>
+        <span class="schedule-label">WELCOME DRINK</span>
+        <span class="schedule-action-btn">Показати на карті ➔</span>
+    </div>
+
+    <!-- 2. ВІНЧАННЯ (З посиланням) -->
+    <div class="schedule-item clickable" data-link="https://maps.app.goo.gl/YHiPeYxTeSJxBRYN9">
+        <div class="schedule-icon-box">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8">
+                <rect x="18" y="24" width="28" height="26" rx="4" />
+                <path d="M18 32 L46 32" />
+                <path d="M26 24 C26 16, 38 16, 38 24" />
+                <circle cx="32" cy="20" r="3" />
+            </svg>
+        </div>
+        <span class="schedule-time">15:00</span>
+        <span class="schedule-label">ВІНЧАННЯ</span>
+        <span class="schedule-action-btn">Показати на карті ➔</span>
+    </div>
+
+    <!-- 3. БАНКЕТ (Звичайний елемент БЕЗ КЛІКУ) -->
+    <div class="schedule-item">
+        <div class="schedule-icon-box">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8">
+                <circle cx="32" cy="32" r="20" />
+                <circle cx="32" cy="32" r="13" />
+                <path d="M10 16 L10 48 M14 16 L14 28 M6 16 L6 28" />
+                <path d="M54 16 L54 48 M50 16 L54 28" />
+            </svg>
+        </div>
+        <span class="schedule-time">17:00</span>
+        <span class="schedule-label">БАНКЕТ</span>
+    </div>
+
+    <!-- 4. ТОРТ (Звичайний елемент БЕЗ КЛІКУ) -->
+    <div class="schedule-item">
+        <div class="schedule-icon-box">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M22 22 L42 22 L40 32 L24 32 Z" />
+                <path d="M16 32 L48 32 L46 46 L18 46 Z" />
+                <path d="M10 46 L54 46 L52 52 L12 52 Z" />
+                <path d="M32 14 C32 14, 30 18, 32 22" />
+            </svg>
+        </div>
+        <span class="schedule-time">21:00</span>
+        <span class="schedule-label">ТОРТ</span>
+    </div>
+
+    <!-- 5. ЗАВЕРШЕННЯ (Звичайний елемент БЕЗ КЛІКУ) -->
+    <div class="schedule-item">
+        <div class="schedule-icon-box">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M32 40 L32 18 M32 40 L20 50 M32 40 L44 50 M32 40 L18 32 M32 40 L46 32" />
+                <circle cx="32" cy="14" r="2" fill="currentColor" />
+                <circle cx="16" cy="28" r="1.5" fill="currentColor" />
+                <circle cx="48" cy="28" r="1.5" fill="currentColor" />
+                <circle cx="22" cy="48" r="1.5" fill="currentColor" />
+                <circle cx="42" cy="48" r="1.5" fill="currentColor" />
+            </svg>
+        </div>
+        <span class="schedule-time">23:00</span>
+        <span class="schedule-label">ЗАВЕРШЕННЯ</span>
+    </div>
+
+    <!-- 6. AFTER PARTY (З посиланням) -->
+    <div class="schedule-item" data-link="https://t.me/your_chat_or_map">
+        <div class="schedule-icon-box">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8">
+                <circle cx="32" cy="34" r="18" />
+                <path d="M32 8 L32 16" />
+                <path d="M18 34 L46 34 M32 16 L32 52" />
+                <path d="M20 24 C26 28, 38 28, 44 24" />
+                <path d="M20 44 C26 40, 38 40, 44 44" />
+            </svg>
+        </div>
+        <span class="schedule-time">00:00</span>
+        <span class="schedule-label">AFTER PARTY</span>
+    </div>
+
+</div>
+    </div>
+</section>
+
+    <!-- DRESSCODE SECTION -->
     <section class="dresscode-section" id="dresscode-section">
         <div class="dresscode-container">
             <h3 class="dresscode-title">DRESS CODE</h3>
@@ -235,131 +281,143 @@
             </p>
 
             <div class="color-palette">
-                <span class="color-dot" style="background-color: #4a3b37;"></span>
-                <span class="color-dot" style="background-color: #6e4e42;"></span>
-                <span class="color-dot" style="background-color: #c08b91;"></span>
-                <span class="color-dot" style="background-color: #6d6f58;"></span>
-                <span class="color-dot" style="background-color: #b0bca8;"></span>
-                <span class="color-dot" style="background-color: #e2c9b6;"></span>
-                <span class="color-dot" style="background-color: #e9e3da;"></span>
+                <span class="color-dot" style="background-color: #FFFFFF;"></span>
+                <span class="color-dot" style="background-color: #FDF6E2;"></span>
+                <span class="color-dot" style="background-color: #800020;"></span>
+                <span class="color-dot" style="background-color: #3D2314;"></span>
+                <span class="color-dot" style="background-color: #000000;"></span>
             </div>
 
-            <p class="dresscode-note">
-                Просимо, щоб білий колір у цей день залишився виключно для нареченої
-            </p>
         </div>
     </section>
 
-    <section class="rsvp-section" id="rsvp-section">
-        <div class="rsvp-hero">
-            <div class="rsvp-card">
-                <div class="rsvp-pin"></div>
-                <div class="rsvp-card-inner">
-                    <h2>RS<br>VP</h2>
-                </div>
+<!-- RSVP SECTION -->
+<section class="rsvp-section" id="rsvp-section">
+    <div class="rsvp-container">
+        
+        <!-- Заголовок у стилі елегантної типографіки -->
+        <div class="rsvp-header">
+            <span class="rsvp-subtitle">PLEASE RESPOND</span>
+            <h2 class="rsvp-title">R.S.V.P.</h2>
+            <div class="rsvp-divider">
+                <span class="line"></span>
+                <span class="diamond">◆</span>
+                <span class="line"></span>
             </div>
-        </div>
-
-        <div class="rsvp-form-container">
             <p class="rsvp-deadline">
-                Просимо підтвердити вашу присутність на нашому святі до 18.10.2026
+                Просимо підтвердити вашу присутність на нашому святі до <strong>18.10.2026</strong>
             </p>
-
-            <form id="rsvpForm" class="rsvp-form">
-                <div class="form-group">
-                    <label for="fullName">Напишіть Ваше ім'я та прізвище</label>
-                    <input type="text" id="fullName" name="entry.111111111" placeholder="Ім'я та прізвище" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Чи плануєте бути присутні на весіллі?</label>
-                    <div class="radio-group">
-                        <label class="radio-label">
-                            <input type="radio" name="entry.222222222" value="Так, з радістю!" required>
-                            <span class="custom-radio"></span>
-                            Так, з радістю!
-                        </label>
-                        <label class="radio-label">
-                            <input type="radio" name="entry.222222222" value="Ні, нажаль не вийде">
-                            <span class="custom-radio"></span>
-                            Ні, на жаль не вийде
-                        </label>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="familyMembers">Підтвердіть присутність інших членів вашої сім'ї написавши їх імена</label>
-                    <textarea id="familyMembers" name="entry.333333333" placeholder="Напишіть сюди" rows="3"></textarea>
-                </div>
-
-                <button type="submit" class="rsvp-submit-btn" id="submitBtn">
-                    <span>ВІДПРАВИТИ</span> →
-                </button>
-            </form>
-
-            <div id="rsvpSuccessMessage" class="rsvp-success-message hidden">
-                Дякуємо! Вашу відповідь успішно збережено.
-            </div>
         </div>
-    </section>
 
-    <section class="alcohol-section" id="alcohol-section">
-        <div class="alcohol-container">
-            <h3 class="alcohol-title">НАПОЇ ТА АЛКОГОЛЬ</h3>
-            <p class="alcohol-subtitle">
-                Щоб ми могли підготувати бар з урахуванням ваших смаків, будь ласка, оберіть чому саме ви віддаєте перевагу
+        <!-- Форма підтвердження -->
+        <form id="rsvpForm" class="rsvp-form">
+            
+            <div class="form-group">
+                <label for="fullName">Ваше ім'я та прізвище *</label>
+                <input type="text" id="fullName" name="entry.111111111" placeholder="Введіть повне ім'я" required>
+            </div>
+
+            <div class="form-group">
+                <label>Ваша присутність</label>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="entry.222222222" value="Так, з радістю!" required>
+                        <span class="custom-radio"></span>
+                        <span class="radio-text">Так, з радістю розділю свято!</span>
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="entry.222222222" value="Ні, на жаль не вийде">
+                        <span class="custom-radio"></span>
+                        <span class="radio-text">На жаль, не можу бути</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="familyMembers">З ким ви будете? (Імена супроводжуючих)</label>
+                <textarea id="familyMembers" name="entry.333333333" placeholder="Зазначте імена інших гостей" rows="2"></textarea>
+            </div>
+
+            <button type="submit" class="rsvp-submit-btn" id="submitBtn">
+                <span>ПІДТВЕРДИТИ УЧАСТЬ</span>
+            </button>
+
+        </form>
+
+        <div id="rsvpSuccessMessage" class="rsvp-success-message" style="display: none;">
+            Дякуємо! Вашу відповідь успішно збережено.
+        </div>
+
+    </div>
+</section>
+
+   <!-- ALCOHOL SECTION -->
+<section class="alcohol-section" id="alcohol-section">
+    <div class="alcohol-container">
+        
+        <!-- Шапка секції у єдиному стилі -->
+        <div class="alcohol-header">
+            <span class="alcohol-subtitle">BAR MENU PREFERENCES</span>
+            <h2 class="alcohol-title">НАПОЇ ТА АЛКОГОЛЬ</h2>
+            <div class="alcohol-divider">
+                <span class="line"></span>
+                <span class="diamond">◆</span>
+                <span class="line"></span>
+            </div>
+            <p class="alcohol-description">
+                Щоб ми могли підготувати бар з урахуванням ваших смаків, будь ласка, оберіть напої, яким ви віддаєте перевагу:
             </p>
-
-            <form id="alcoholForm" class="alcohol-form">
-                <div class="alcohol-options">
-                    <label class="checkbox-label">
-                        <input type="checkbox" name="entry.444444444" value="Ігристе / Шампанське">
-                        <span class="custom-checkbox"></span>
-                        <span class="option-text">🍾 Ігристе / Шампанське</span>
-                    </label>
-
-                    <label class="checkbox-label">
-                        <input type="checkbox" name="entry.444444444" value="Вино">
-                        <span class="custom-checkbox"></span>
-                        <span class="option-text">🥂 Вино</span>
-                    </label>
-
-                    <label class="checkbox-label">
-                        <input type="checkbox" name="entry.444444444" value="Віскі">
-                        <span class="custom-checkbox"></span>
-                        <span class="option-text">🥃 Віскі</span>
-                    </label>
-
-                    <label class="checkbox-label">
-                        <input type="checkbox" name="entry.444444444" value="Міцний алкоголь (Віскі / Коньяк / Водка)">
-                        <span class="custom-checkbox"></span>
-                        <span class="option-text">🍶 Горілка</span>
-                    </label>
-
-                    <!-- <label class="checkbox-label">
-                        <input type="checkbox" name="entry.444444444" value="Коктейлі">
-                        <span class="custom-checkbox"></span>
-                        <span class="option-text">🍹 Коктейлі</span>
-                    </label>
-
-                    <label class="checkbox-label">
-                        <input type="checkbox" name="entry.444444444" value="Безалкогольні напої">
-                        <span class="custom-checkbox"></span>
-                        <span class="option-text">🥤 Безалкогольні напої</span>
-                    </label> -->
-                </div>
-
-                <button type="submit" class="alcohol-submit-btn">
-                    <span>ПРОГОЛОСУВАТИ</span> →
-                </button>
-            </form>
-
-            <div id="alcoholSuccessMessage" class="alcohol-success-message hidden">
-                Дякуємо! Ваші побажання враховано.
-            </div>
         </div>
-    </section>
 
+        <!-- Форма вибору -->
+        <form id="alcoholForm" class="alcohol-form">
+            <div class="alcohol-options">
+                
+                <label class="checkbox-label">
+                    <input type="checkbox" name="entry.444444444" value="Ігристе / Шампанське">
+                    <span class="custom-checkbox"></span>
+                    <span class="option-text">Ігристе / Шампанське</span>
+                </label>
+
+                <label class="checkbox-label">
+                    <input type="checkbox" name="entry.444444444" value="Вино">
+                    <span class="custom-checkbox"></span>
+                    <span class="option-text">Вино</span>
+                </label>
+
+                <label class="checkbox-label">
+                    <input type="checkbox" name="entry.444444444" value="Віскі">
+                    <span class="custom-checkbox"></span>
+                    <span class="option-text">Віскі</span>
+                </label>
+
+                <label class="checkbox-label">
+                    <input type="checkbox" name="entry.444444444" value="Горілка">
+                    <span class="custom-checkbox"></span>
+                    <span class="option-text">Горілка</span>
+                </label>
+
+                <label class="checkbox-label">
+                    <input type="checkbox" name="entry.444444444" value="Коньяк">
+                    <span class="custom-checkbox"></span>
+                    <span class="option-text">Коньяк</span>
+                </label>
+
+            </div>
+
+            <button type="submit" class="alcohol-submit-btn">
+                <span>ЗБЕРЕГТИ ПОБАЖАННЯ</span>
+            </button>
+        </form>
+
+        <div id="alcoholSuccessMessage" class="alcohol-success-message" style="display: none;">
+            Дякуємо! Ваші побажання щодо бару успішно враховано.
+        </div>
+
+    </div>
+</section>
+
+    <!-- FINAL SECTION -->
     <section class="final-section" id="final-section">
         <div class="final-container">
             <div class="final-frame-outer">
@@ -392,11 +450,6 @@
                     <span id="seconds" class="timer-number">00</span>
                     <span class="timer-label">секунд</span>
                 </div>
-            </div>
-
-            <div class="final-signature">
-                <p class="text-split-left">З ЛЮБОВ'Ю,</p>
-                <p class="names text-split-right">МИХАЙЛО ТА ЛАРИСА</p>
             </div>
         </div>
     </section>

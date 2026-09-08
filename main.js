@@ -33,7 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
         envelopeWrapper.addEventListener("click", () => {
             envelopeWrapper.classList.add("open");
             
-            // Запуск музики після відкриття конверта
             if (!isPlaying && bgMusic) {
                 toggleMusic();
             }
@@ -46,9 +45,9 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 3. Спостерігач за появою секцій при скролі
+    // 3. Спостерігач за появою секцій при скролі (ДОДАНО #alcohol-section)
     const animatedSections = document.querySelectorAll(
-        "#invitation-section, #photo-section, #location-section, #schedule-section, #dresscode-section, #rsvp-section, #final-section"
+        "#invitation-section, #photo-section, #location-section, #schedule-section, #dresscode-section, #rsvp-section, #alcohol-section, #final-section"
     );
 
     if (animatedSections.length > 0) {
@@ -81,8 +80,11 @@ document.addEventListener("DOMContentLoaded", () => {
             })
             .then(() => {
                 rsvpForm.reset();
-                rsvpForm.classList.add("hidden");
-                if (successMsg) successMsg.classList.remove("hidden");
+                rsvpForm.style.display = "none"; // Гарантовано ховаємо форму
+                if (successMsg) {
+                    successMsg.classList.remove("hidden");
+                    successMsg.style.display = "block"; // Гарантовано показуємо повідомлення
+                }
             })
             .catch((error) => {
                 alert("Помилка відправки. Спробуйте ще раз.");
@@ -108,8 +110,11 @@ document.addEventListener("DOMContentLoaded", () => {
             })
             .then(() => {
                 alcoholForm.reset();
-                alcoholForm.classList.add("hidden");
-                if (alcoholSuccessMsg) alcoholSuccessMsg.classList.remove("hidden");
+                alcoholForm.style.display = "none"; // Гарантовано ховаємо форму
+                if (alcoholSuccessMsg) {
+                    alcoholSuccessMsg.classList.remove("hidden");
+                    alcoholSuccessMsg.style.display = "block"; // Гарантовано показуємо повідомлення
+                }
             })
             .catch((error) => {
                 alert("Помилка відправки. Спробуйте ще раз.");
@@ -118,8 +123,8 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 6. Таймер зворотного відліку
-    const targetDate = new Date("2027-07-29T15:00:00").getTime();
+    // 6. Зворотний відлік до весілля (24.10.2026)
+    const targetDate = new Date("2026-10-24T15:00:00").getTime();
 
     function updateTimer() {
         const daysEl = document.getElementById("days");
@@ -152,4 +157,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     setInterval(updateTimer, 1000);
     updateTimer();
+
+        // Клікабельність елементів таймінгу
+    const clickableScheduleItems = document.querySelectorAll('.schedule-item.clickable');
+
+    clickableScheduleItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const link = item.getAttribute('data-link');
+            if (link) {
+                window.open(link, '_blank'); // Відкриває посилання в новій вкладці
+            }
+        });
+    });
 });
