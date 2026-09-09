@@ -3,18 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Михайло & Лариса</title>
+    <title>Михайло & Лариса | 24.10.2026</title>
+    
+    <!-- Open Graph для красивого прев'ю в Telegram/Viber/Instagram -->
+    <meta property="og:title" content="Запрошення на весілля | Михайло & Лариса">
+    <meta property="og:description" content="Запрошуємо вас розділити з нами цей особливий день - 24 жовтня 2026 року.">
+    <meta property="og:image" content="photo.jpg"> <!-- Заміни на правильне посилання до фото, якщо воно інше -->
+    <meta property="og:type" content="website">
+
     <link rel="icon" href="favicon.png" type="image/png">
 
+    <!-- Preload ключового фону для миттєвого відображення -->
+    <link rel="preload" as="image" href="background_three.jpg">
 
     <link rel="stylesheet" href="main.css">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -37,58 +43,49 @@
     </svg>
 </button>
 
-    <!-- КОНВЕРТ OVERLAY -->
-    <div id="envelope-overlay" class="envelope-overlay">
-        <div class="blur-background"></div>
-        <div class="envelope-container">
-            <p class="envelope-title">Вам лист від</p>
-            <h1 class="envelope-names">
-                <span>Михайла</span>
-                <span class="envelope-conjunction">та</span>
-                <span>Лариси</span>
-            </h1>
-            
-            <div class="envelope-wrapper" id="envelope-wrapper">
-                <div class="envelope">
-                    <div class="envelope-back"></div>
-                    <div class="letter">
-                        <div class="letter-content">
-                            <p class="letter-main">Запрошення</p>
-                            <p class="letter-sub">на весілля</p>
-                        </div>
+<!-- КОНВЕРТ OVERLAY -->
+<div id="envelope-overlay" class="envelope-overlay">
+    <div class="blur-background"></div>
+    <div class="envelope-container">
+        <p class="envelope-title">Вам лист від</p>
+        <h1 class="envelope-names">
+            <span>Михайла</span>
+            <span class="envelope-conjunction">та</span>
+            <span>Лариси</span>
+        </h1>
+        
+        <div class="envelope-wrapper" id="envelope-wrapper">
+            <div class="envelope">
+                <div class="envelope-back"></div>
+                <div class="letter">
+                    <div class="letter-content">
+                        <p class="letter-main">Запрошення</p>
+                        <p class="letter-sub">на весілля</p>
                     </div>
-                    <div class="envelope-front"></div>
-                    <div class="envelope-top"></div>
-                    <div class="wax-seal"></div>
                 </div>
+                <div class="envelope-front"></div>
+                <div class="envelope-top"></div>
+                <div class="wax-seal"></div>
             </div>
-            <p class="envelope-hint">Натисніть на конверт, щоб відкрити</p>
         </div>
+        <p class="envelope-hint">Натисніть на конверт, щоб відкрити</p>
     </div>
+</div>
 
 <!-- HERO SECTION -->
 <section class="hero-section">
-
-    <!-- Єдиний екземпляр теглайну -->
     <p class="hero-tagline">SAVE <span>the</span> DATE</p>
-
-    <!-- Імена, які раніше були всередині glass-card -->
     <h2 class="hero-names">
         <span class="name-1 great-vibes-regular">Михайло</span>
         <span class="ampersand">&</span>
         <span class="name-2 great-vibes-regular">Лариса</span>
     </h2>
-
-    <!-- Єдиний екземпляр дати -->
     <p class="hero-date">24.10.2026</p>
-
 </section>
 
 <!-- INVITATION SECTION -->
 <section class="invitation-section" id="invitation-section">
     <div class="invitation-content">
-        
-        <!-- Верхня деталь: Монограма ініціалів -->
         <div class="invitation-badge anim-row">
             <span class="badge-initials">M & L</span>
         </div>
@@ -100,61 +97,50 @@
         </div>
 
         <h3 class="invitation-title anim-row">Дорогі гості!</h3>
-        
         <p class="accent-text anim-row">Запрошуємо вас розділити з нами цей особливий день</p>
-        
         <p class="main-text anim-row">
             Ваша присутність та щирі посмішки зроблять наше свято по-справжньому незабутнім та теплим.
         </p>
         
-        <!-- Нижній акцент: Фото у вишуканій подвійній рамці -->
         <div class="gate-wrapper anim-row">
             <div class="gate-frame">
                 <img src="brama.png" alt="Весільна брама" class="wedding-gate-photo">
             </div>
         </div>
-
     </div>
 </section>
 
-    <!-- PHOTO SECTION -->
-    <section class="photo-section" id="photo-section">
-        <div class="photo-card-wrapper">
-            <div class="photo-card">
-                <div class="photo-wrapper">
-                    <img src="photo.jpg" alt="Весільне фото" class="photo-split photo-split-left">
-                    <img src="photo.jpg" alt="Весільне фото" class="photo-split photo-split-right">
-                    <div class="photo-overlay-glare"></div>
-                </div>
+<!-- PHOTO SECTION -->
+<section class="photo-section" id="photo-section">
+    <div class="photo-card-wrapper">
+        <div class="photo-card">
+            <div class="photo-wrapper">
+                <img src="photo.jpg" alt="Весільне фото" class="photo-split photo-split-left">
+                <img src="photo.jpg" alt="Весільне фото" class="photo-split photo-split-right">
+                <div class="photo-overlay-glare"></div>
             </div>
-            
-            <p class="photo-footer-date">ЖОВТЕНЬ, 24, 2026</p>
         </div>
-    </section>
+        <p class="photo-footer-date">ЖОВТЕНЬ, 24, 2026</p>
+    </div>
+</section>
 
-    <!-- LOCATION SECTION -->
-    <section class="location-section" id="location-section">
-        <div class="location-container">
-            <p class="location-subtitle">Святкуватимемо у</p>
-            <h3 class="location-title">«ПУЗАТИЙ ШЕФ»</h3>
-            <p class="location-address">
-                м. Виноградів, вул. Комунальна 21б,<br>
-                Закарпатська область, Україна
-            </p>
-            
-            <a href="https://maps.app.goo.gl/13PJkfa9r1PXG35X7" target="_blank" class="location-btn">
-                ПОКАЗАТИ НА КАРТІ
-            </a>
-        </div>
-    </section>
+<!-- LOCATION SECTION -->
+<section class="location-section" id="location-section">
+    <div class="location-container">
+        <p class="location-subtitle">Святкуватимемо у</p>
+        <h3 class="location-title">«ПУЗАТИЙ ШЕФ»</h3>
+        <p class="location-address">
+            м. Виноградів, вул. Комунальна 21б,<br>
+            Закарпатська область, Україна
+        </p>
+        <a href="https://maps.app.goo.gl/13PJkfa9r1PXG35X7" target="_blank" class="location-btn">ПОКАЗАТИ НА КАРТІ</a>
+    </div>
+</section>
 
 <!-- SCHEDULE SECTION -->
 <section class="schedule-section" id="schedule-section">
-    <!-- Багатошаровий преміальний оверлей -->
     <div class="schedule-overlay"></div>
-
     <div class="schedule-container">
-        <!-- Елегантна шапка -->
         <div class="schedule-header">
             <span class="schedule-subtitle">TIMELINE</span>
             <h2 class="schedule-title">ТАЙМІНГ ДНЯ</h2>
@@ -165,10 +151,7 @@
             </div>
         </div>
 
-        <!-- Вертикальний список для 3 елементів -->
         <div class="schedule-list">
-            
-            <!-- 1. WELCOME DRINK -->
             <div class="schedule-item clickable" data-link="https://maps.app.goo.gl/MDcaHuzs5EnwkB5G9">
                 <div class="schedule-icon-box">
                     <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8">
@@ -184,7 +167,6 @@
                 </div>
             </div>
 
-            <!-- 2. ВІНЧАННЯ -->
             <div class="schedule-item clickable" data-link="https://maps.app.goo.gl/YHiPeYxTeSJxBRYN9">
                 <div class="schedule-icon-box">
                     <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8">
@@ -201,7 +183,6 @@
                 </div>
             </div>
 
-            <!-- 3. БАНКЕТ -->
             <div class="schedule-item clickable" data-link="https://maps.app.goo.gl/13PJkfa9r1PXG35X7">
                 <div class="schedule-icon-box">
                     <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8">
@@ -217,43 +198,33 @@
                     <span class="schedule-action-btn">Показати на карті ➔</span>
                 </div>
             </div>
-
         </div>
     </div>
 </section>
-    <!-- DRESSCODE SECTION -->
-    <section class="dresscode-section" id="dresscode-section">
-        <div class="dresscode-container">
-            <h3 class="dresscode-title">DRESS CODE</h3>
-            
-            <div class="dresscode-image-wrapper">
-                <img src="dresscode.png" alt="Дрес-код" class="dresscode-illustration">
-            </div>
 
-            <p class="dresscode-text-accent">
-                Ми дуже намагаємось зробити цей день не лише затишним і веселим, а й стильним
-            </p>
-
-            <p class="dresscode-text-main">
-                Тому нам буде надзвичайно приємно, якщо ви підтримаєте стиль і кольори нашого весілля у своїх образах
-            </p>
-
-            <div class="color-palette">
-                <span class="color-dot" style="background-color: #FFFFFF;"></span>
-                <span class="color-dot" style="background-color: #FDF6E2;"></span>
-                <span class="color-dot" style="background-color: #800020;"></span>
-                <span class="color-dot" style="background-color: #3D2314;"></span>
-                <span class="color-dot" style="background-color: #000000;"></span>
-            </div>
-
+<!-- DRESSCODE SECTION -->
+<section class="dresscode-section" id="dresscode-section">
+    <div class="dresscode-container">
+        <h3 class="dresscode-title">DRESS CODE</h3>
+        <div class="dresscode-image-wrapper">
+            <img src="dresscode.png" alt="Дрес-код" class="dresscode-illustration">
         </div>
-    </section>
+        <p class="dresscode-text-accent">Ми дуже намагаємось зробити цей день не лише затишним і веселим, а й стильним</p>
+        <p class="dresscode-text-main">Тому нам буде надзвичайно приємно, якщо ви підтримаєте стиль і кольори нашого весілля у своїх образах</p>
+
+        <div class="color-palette">
+            <span class="color-dot" style="background-color: #FFFFFF;"></span>
+            <span class="color-dot" style="background-color: #FDF6E2;"></span>
+            <span class="color-dot" style="background-color: #800020;"></span>
+            <span class="color-dot" style="background-color: #3D2314;"></span>
+            <span class="color-dot" style="background-color: #000000;"></span>
+        </div>
+    </div>
+</section>
 
 <!-- RSVP SECTION -->
 <section class="rsvp-section" id="rsvp-section">
     <div class="rsvp-container">
-        
-        <!-- Заголовок у стилі елегантної типографіки -->
         <div class="rsvp-header">
             <span class="rsvp-subtitle">PLEASE RESPOND</span>
             <h2 class="rsvp-title">R.S.V.P.</h2>
@@ -262,21 +233,17 @@
                 <span class="diamond">◆</span>
                 <span class="line"></span>
             </div>
-            <p class="rsvp-deadline">
-                Просимо підтвердити вашу присутність на нашому святі до <strong>18.10.2026</strong>
-            </p>
+            <p class="rsvp-deadline">Просимо підтвердити вашу присутність на нашому святі до <strong>18.10.2026</strong></p>
         </div>
 
-        <!-- Форма підтвердження -->
         <form id="rsvpForm" class="rsvp-form">
-            
             <div class="form-group">
                 <label for="fullName">Ваше ім'я та прізвище *</label>
-                <input type="text" id="fullName" name="entry.1909591273" placeholder="Введіть повне ім'я" required>
+                <input type="text" id="fullName" name="entry.1909591273" placeholder="Введіть повне ім'я" required autocomplete="name">
             </div>
 
-            <div class="form-group">
-                <label>Ваша присутність</label>
+            <fieldset class="form-group fieldset-border-none">
+                <legend>Ваша присутність</legend>
                 <div class="radio-group">
                     <label class="radio-label">
                         <input type="radio" name="entry.177743937" value="Так, з радістю!" required>
@@ -289,31 +256,27 @@
                         <span class="radio-text">На жаль, не можу бути</span>
                     </label>
                 </div>
-            </div>
+            </fieldset>
 
             <div class="form-group">
                 <label for="familyMembers">З ким ви будете? (Імена супроводжуючих)</label>
                 <textarea id="familyMembers" name="entry.163951541" placeholder="Зазначте імена інших гостей" rows="2"></textarea>
             </div>
 
-            <button type="submit" class="rsvp-submit-btn" id="submitBtn">
+            <button type="submit" class="rsvp-submit-btn">
                 <span>ПІДТВЕРДИТИ УЧАСТЬ</span>
             </button>
-
         </form>
 
-        <div id="rsvpSuccessMessage" class="rsvp-success-message" style="display: none;">
+        <div id="rsvpSuccessMessage" class="rsvp-success-message" style="display: none;" aria-live="polite">
             Дякуємо! Вашу відповідь успішно збережено.
         </div>
-
     </div>
 </section>
 
 <!-- ALCOHOL SECTION -->
 <section class="alcohol-section" id="alcohol-section">
     <div class="alcohol-container">
-        
-        <!-- Шапка секції -->
         <div class="alcohol-header">
             <span class="alcohol-subtitle">BAR MENU PREFERENCES</span>
             <h2 class="alcohol-title">НАПОЇ ТА АЛКОГОЛЬ</h2>
@@ -322,104 +285,94 @@
                 <span class="diamond">◆</span>
                 <span class="line"></span>
             </div>
-            <p class="alcohol-description">
-                Щоб ми могли підготувати бар з урахуванням ваших смаків, будь ласка, оберіть напої, яким ви віддаєте перевагу:
-            </p>
+            <p class="alcohol-description">Щоб ми могли підготувати бар з урахуванням ваших смаків, будь ласка, оберіть напої, яким ви віддаєте перевагу:</p>
         </div>
 
-        <!-- Форма вибору -->
         <form id="alcoholForm" class="alcohol-form">
-            
-            <!-- Поле для імені (Додано) -->
             <div class="form-group">
                 <label for="alcoholGuestName">Ваше ім'я та прізвище *</label>
-                <input type="text" id="alcoholGuestName" name="entry.19397522" placeholder="Введіть повне ім'я" required>
+                <input type="text" id="alcoholGuestName" name="entry.19397522" placeholder="Введіть повне ім'я" required autocomplete="name">
             </div>
 
-            <!-- Список напоїв -->
-            <div class="alcohol-options">
-                
-                <label class="checkbox-label">
-                    <input type="checkbox" name="entry.1679428094" value="Ігристе / Шампанське">
-                    <span class="custom-checkbox"></span>
-                    <span class="option-text">Ігристе / Шампанське</span>
-                </label>
-
-                <label class="checkbox-label">
-                    <input type="checkbox" name="entry.1679428094" value="Вино">
-                    <span class="custom-checkbox"></span>
-                    <span class="option-text">Вино</span>
-                </label>
-
-                <label class="checkbox-label">
-                    <input type="checkbox" name="entry.1679428094" value="Віскі">
-                    <span class="custom-checkbox"></span>
-                    <span class="option-text">Віскі</span>
-                </label>
-
-                <label class="checkbox-label">
-                    <input type="checkbox" name="entry.1679428094" value="Горілка">
-                    <span class="custom-checkbox"></span>
-                    <span class="option-text">Горілка</span>
-                </label>
-
-                <label class="checkbox-label">
-                    <input type="checkbox" name="entry.1679428094" value="Коньяк">
-                    <span class="custom-checkbox"></span>
-                    <span class="option-text">Коньяк</span>
-                </label>
-
-            </div>
+            <fieldset class="form-group fieldset-border-none">
+                <legend class="visually-hidden">Оберіть напої</legend>
+                <div class="alcohol-options">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="entry.1679428094" value="Ігристе / Шампанське">
+                        <span class="custom-checkbox"></span>
+                        <span class="option-text">Ігристе / Шампанське</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="entry.1679428094" value="Вино">
+                        <span class="custom-checkbox"></span>
+                        <span class="option-text">Вино</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="entry.1679428094" value="Віскі">
+                        <span class="custom-checkbox"></span>
+                        <span class="option-text">Віскі</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="entry.1679428094" value="Горілка">
+                        <span class="custom-checkbox"></span>
+                        <span class="option-text">Горілка</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="entry.1679428094" value="Коньяк">
+                        <span class="custom-checkbox"></span>
+                        <span class="option-text">Коньяк</span>
+                    </label>
+                </div>
+            </fieldset>
 
             <button type="submit" class="alcohol-submit-btn">
                 <span>ЗБЕРЕГТИ ПОБАЖАННЯ</span>
             </button>
         </form>
 
-        <div id="alcoholSuccessMessage" class="alcohol-success-message" style="display: none;">
+        <div id="alcoholSuccessMessage" class="alcohol-success-message" style="display: none;" aria-live="polite">
             Дякуємо! Ваші побажання щодо бару успішно враховано.
         </div>
-
     </div>
 </section>
 
-    <!-- FINAL SECTION -->
-    <section class="final-section" id="final-section">
-        <div class="final-container">
-            <div class="final-frame-outer">
-                <div class="final-frame-inner photo-wrapper">
-                    <img src="last_photo.jpg" alt="Михайло та Лариса" class="final-photo photo-split photo-split-left">
-                    <img src="last_photo.jpg" alt="Михайло та Лариса" class="final-photo photo-split photo-split-right">
-                    <div class="photo-overlay-glare"></div>
-                </div>
-            </div>
-
-            <p class="final-cursive">До зустрічі через</p>
-
-            <div class="countdown-timer">
-                <div class="timer-item">
-                    <span id="days" class="timer-number">00</span>
-                    <span class="timer-label">днів</span>
-                </div>
-                <span class="timer-separator">:</span>
-                <div class="timer-item">
-                    <span id="hours" class="timer-number">00</span>
-                    <span class="timer-label">годин</span>
-                </div>
-                <span class="timer-separator">:</span>
-                <div class="timer-item">
-                    <span id="minutes" class="timer-number">00</span>
-                    <span class="timer-label">хвилин</span>
-                </div>
-                <span class="timer-separator">:</span>
-                <div class="timer-item">
-                    <span id="seconds" class="timer-number">00</span>
-                    <span class="timer-label">секунд</span>
-                </div>
+<!-- FINAL SECTION -->
+<section class="final-section" id="final-section">
+    <div class="final-container">
+        <div class="final-frame-outer">
+            <div class="final-frame-inner photo-wrapper">
+                <img src="last_photo.jpg" alt="Михайло та Лариса" class="final-photo photo-split photo-split-left">
+                <img src="last_photo.jpg" alt="Михайло та Лариса" class="final-photo photo-split photo-split-right">
+                <div class="photo-overlay-glare"></div>
             </div>
         </div>
-    </section>
 
-    <script src="main.js"></script>
+        <p class="final-cursive">До зустрічі через</p>
+
+        <div class="countdown-timer">
+            <div class="timer-item">
+                <span id="days" class="timer-number">00</span>
+                <span class="timer-label">днів</span>
+            </div>
+            <span class="timer-separator">:</span>
+            <div class="timer-item">
+                <span id="hours" class="timer-number">00</span>
+                <span class="timer-label">годин</span>
+            </div>
+            <span class="timer-separator">:</span>
+            <div class="timer-item">
+                <span id="minutes" class="timer-number">00</span>
+                <span class="timer-label">хвилин</span>
+            </div>
+            <span class="timer-separator">:</span>
+            <div class="timer-item">
+                <span id="seconds" class="timer-number">00</span>
+                <span class="timer-label">секунд</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="main.js"></script>
 </body>
 </html>

@@ -13,13 +13,20 @@
     /* Кольори сайту */
     --site-bg-light: #f9f9f9;
     --site-bg-section: #f9f9f9;
-    --site-bg-dark: #3b3a32;
+    --site-bg-dark: #111111;
     
     --site-text-light: #ffffff;
     --site-text-dark: #2c2c2c;
     --site-text-muted: #4a4a4a;
     
+    --color-bordeaux: #800020;
+    --color-choco: #3D2314;
     --gold-accent: #d4af37;
+
+    /* Флюїдна типографіка (автоматично адаптується під екран) */
+    --fs-hero-names: clamp(3.2rem, 10vw, 5.5rem);
+    --fs-section-title: clamp(2rem, 6vw, 3rem);
+    --fs-section-subtitle: clamp(1.8rem, 5vw, 2.4rem);
 }
 
 html, body {
@@ -32,556 +39,158 @@ html, body {
     scroll-behavior: smooth;
 }
 
-* {
-    box-sizing: border-box;
-}
+* { box-sizing: border-box; }
+.hidden { display: none !important; }
 
-.hidden {
-    display: none !important;
+/* Утиліти для семантики */
+.fieldset-border-none {
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+.fieldset-border-none legend {
+    font-family: var(--primary-font);
+    font-size: 1.1rem;
+    color: var(--site-text-light);
+    font-style: italic;
+    opacity: 0.9;
+    margin-bottom: 8px;
+}
+.visually-hidden {
+    position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+    overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;
 }
 
 /* --- МІНІМАЛІСТИЧНА КНОПКА МУЗИКИ --- */
 .music-toggle-btn {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: rgba(44, 44, 44, 0.85); 
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: #e8e2d8; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    z-index: 9999;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    padding: 0;
-    outline: none;
+    position: fixed; bottom: 25px; right: 25px; width: 44px; height: 44px;
+    border-radius: 50%; background: rgba(44, 44, 44, 0.85); 
+    border: 1px solid rgba(255, 255, 255, 0.2); color: #e8e2d8; 
+    display: flex; justify-content: center; align-items: center;
+    cursor: pointer; z-index: 9999; backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); padding: 0; outline: none;
 }
-
-.music-toggle-btn:hover {
-    transform: scale(1.08);
-    background: rgba(44, 44, 44, 0.95);
-    border-color: rgba(255, 255, 255, 0.4);
-    color: #ffffff;
-}
-
-.music-toggle-btn:active {
-    transform: scale(0.95);
-}
-
-.music-icon {
-    width: 20px;
-    height: 20px;
-    position: absolute;
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
-}
-
-.music-icon.icon-play {
-    opacity: 0;
-    transform: scale(0.6) rotate(-45deg);
-}
-
-.music-icon.icon-mute {
-    opacity: 1;
-    transform: scale(1) rotate(0deg);
-}
-
-.music-toggle-btn.playing .music-icon.icon-play {
-    opacity: 1;
-    transform: scale(1) rotate(0deg);
-}
-
-.music-toggle-btn.playing .music-icon.icon-mute {
-    opacity: 0;
-    transform: scale(0.6) rotate(45deg);
-}
-
-.music-toggle-btn.playing .wave-1 {
-    animation: pulseWave 1.6s infinite ease-in-out;
-}
-
-.music-toggle-btn.playing .wave-2 {
-    animation: pulseWave 1.6s infinite ease-in-out 0.4s;
-}
+.music-toggle-btn:hover { transform: scale(1.08); background: rgba(44, 44, 44, 0.95); border-color: rgba(255, 255, 255, 0.4); color: var(--site-text-light); }
+.music-toggle-btn:active { transform: scale(0.95); }
+.music-icon { width: 20px; height: 20px; position: absolute; transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease; }
+.music-icon.icon-play { opacity: 0; transform: scale(0.6) rotate(-45deg); }
+.music-icon.icon-mute { opacity: 1; transform: scale(1) rotate(0deg); }
+.music-toggle-btn.playing .music-icon.icon-play { opacity: 1; transform: scale(1) rotate(0deg); }
+.music-toggle-btn.playing .music-icon.icon-mute { opacity: 0; transform: scale(0.6) rotate(45deg); }
+.music-toggle-btn.playing .wave-1 { animation: pulseWave 1.6s infinite ease-in-out; }
+.music-toggle-btn.playing .wave-2 { animation: pulseWave 1.6s infinite ease-in-out 0.4s; }
 
 @keyframes pulseWave {
-    0%, 100% {
-        opacity: 0.3;
-        transform: scale(0.9);
-    }
-    50% {
-        opacity: 1;
-        transform: scale(1.05);
-    }
+    0%, 100% { opacity: 0.3; transform: scale(0.9); }
+    50% { opacity: 1; transform: scale(1.05); }
 }
 
 /* --- СЕКЦІЯ 1: КОНВЕРТ --- */
 .envelope-overlay {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 999999;
-    overflow: hidden;
-    background: transparent;
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    display: flex; justify-content: center; align-items: center;
+    z-index: 999999; overflow: hidden; background: transparent;
     transition: opacity 1.2s ease-in-out, transform 1.2s ease-in-out;
 }
-
 .blur-background {
-    position: absolute;
-    width: 100%; height: 100%;
+    position: absolute; width: 100%; height: 100%;
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), var(--envelope-bg-image) no-repeat center center/cover;
-    filter: grayscale(100%);
-    z-index: 1;
+    filter: grayscale(100%); z-index: 1;
 }
-
 .envelope-container {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    padding: 60px 20px 40px;
-    perspective: 2000px;
+    position: relative; z-index: 2; width: 100%; height: 100%;
+    display: flex; flex-direction: column; justify-content: space-between; align-items: center;
+    padding: 60px 20px 40px; perspective: 2000px;
 }
-
 .envelope-title {
-    font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.7);
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    margin-bottom: 8px;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+    font-size: 0.8rem; color: rgba(255, 255, 255, 0.7); letter-spacing: 5px;
+    text-transform: uppercase; margin-bottom: 8px; text-shadow: 0 2px 4px rgba(0,0,0,0.6);
 }
-
 .envelope-names {
-    font-family: var(--primary-font);
-    font-size: 2.4rem;
-    font-style: italic;
-    font-weight: 400;
-    color: var(--site-text-light);
-    margin: 0;
-    text-shadow: 0 2px 15px rgba(0,0,0,0.8);
+    font-family: var(--primary-font); font-size: var(--fs-section-subtitle); font-style: italic;
+    font-weight: 400; color: var(--site-text-light); margin: 0; text-shadow: 0 2px 15px rgba(0,0,0,0.8);
 }
-
-.envelope-names span {
-    display: block;
-    text-align: center;
-    line-height: 1.2;
-}
-
-.envelope-names .envelope-conjunction {
-    font-size: 1.2rem;        
-    opacity: 0.7;
-    letter-spacing: 2px;
-    margin: 4px 0;            
-    font-style: italic;       
-}
-
-.envelope-wrapper {
-    position: relative;
-    width: 320px;
-    height: 220px;
-    margin: auto auto 40px;
-    cursor: pointer;
-}
-
-.envelope {
-    width: 100%; height: 100%;
-    position: relative;
-}
-
-.envelope-back {
-    position: absolute;
-    width: 100%; height: 100%;
-    background: var(--env-shadow);
-    border-radius: 4px;
-    box-shadow: 0 35px 70px rgba(0, 0, 0, 0.75);
-}
-
+.envelope-names span { display: block; text-align: center; line-height: 1.2; }
+.envelope-names .envelope-conjunction { font-size: 1.2rem; opacity: 0.7; letter-spacing: 2px; margin: 4px 0; font-style: italic; }
+.envelope-wrapper { position: relative; width: 320px; height: 220px; margin: auto auto 40px; cursor: pointer; }
+.envelope { width: 100%; height: 100%; position: relative; }
+.envelope-back { position: absolute; width: 100%; height: 100%; background: var(--env-shadow); border-radius: 4px; box-shadow: 0 35px 70px rgba(0, 0, 0, 0.75); }
 .envelope-front {
-    position: absolute;
-    width: 100%; height: 100%;
-    background: var(--env-paper);
+    position: absolute; width: 100%; height: 100%; background: var(--env-paper);
     clip-path: polygon(0% 25%, 50% 72%, 100% 25%, 100% 100%, 0% 100%);
-    border-radius: 4px;
-    z-index: 3;
-    filter: drop-shadow(0px -2px 4px rgba(255, 255, 255, 0.03)) drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.5));
+    border-radius: 4px; z-index: 3; filter: drop-shadow(0px -2px 4px rgba(255, 255, 255, 0.03)) drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.5));
 }
-
 .envelope-top {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
     background: linear-gradient(to bottom, #242424, var(--env-paper));
-    clip-path: polygon(0% 0%, 50% 80%, 100% 0%);
-    transform-origin: top center;
-    transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 4;
-    border-radius: 4px 4px 0 0;
+    clip-path: polygon(0% 0%, 50% 80%, 100% 0%); transform-origin: top center;
+    transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1); z-index: 4; border-radius: 4px 4px 0 0;
     filter: drop-shadow(0px 10px 18px rgba(0, 0, 0, 0.6));
 }
-
 .envelope-top::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    clip-path: polygon(3% 0%, 50% 76%, 97% 0%, 94% 0%, 50% 72%, 6% 0%);
-    background-color: var(--env-border);
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    clip-path: polygon(3% 0%, 50% 76%, 97% 0%, 94% 0%, 50% 72%, 6% 0%); background-color: var(--env-border);
 }
-
 .envelope-top::after {
-    content: 'W'; 
-    position: absolute;
-    top: 35%; left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: var(--primary-font);
-    font-size: 1.6rem;
-    color: rgba(255, 255, 255, 0.25);
-    font-style: italic;
-    letter-spacing: 2px;
+    content: 'W'; position: absolute; top: 35%; left: 50%; transform: translate(-50%, -50%);
+    font-family: var(--primary-font); font-size: 1.6rem; color: rgba(255, 255, 255, 0.25);
+    font-style: italic; letter-spacing: 2px;
 }
-
 .letter {
-    position: absolute;
-    bottom: 8px; left: 18px;
-    width: 284px;
-    height: 200px;
-    background: #ffffff;
-    border-radius: 2px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-    transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: absolute; bottom: 8px; left: 18px; width: 284px; height: 200px;
+    background: var(--site-text-light); border-radius: 2px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1); z-index: 2; display: flex; justify-content: center; align-items: center;
 }
-
-.letter-content {
-    text-align: center;
-    border: 1px solid #1a1a1a;
-    width: calc(100% - 20px);
-    height: calc(100% - 20px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.letter-main {
-    font-family: var(--primary-font);
-    font-size: 1.8rem;
-    color: #1a1a1a; 
-}
-
-.letter-sub {
-    font-size: 0.7rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #777;
-    margin-top: 4px;
-}
-
-.envelope-hint {
-    font-size: 0.75rem;
-    color: rgba(255, 255, 255, 0.55);
-    letter-spacing: 1px;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-    animation: pulseHint 2.5s infinite;
-}
-
-.envelope-wrapper.open .envelope-top {
-    transform: rotateX(180deg);
-    z-index: 1;
-}
-
-.envelope-wrapper.open .letter {
-    transform: translateY(-120px) scale(1.02);
-    z-index: 5;
-}
-
-.envelope-overlay.fade-out {
-    opacity: 0;
-    transform: translateY(-100vh);
-    pointer-events: none;
-}
+.letter-content { text-align: center; border: 1px solid #1a1a1a; width: calc(100% - 20px); height: calc(100% - 20px); display: flex; flex-direction: column; justify-content: center; }
+.letter-main { font-family: var(--primary-font); font-size: 1.8rem; color: #1a1a1a; margin: 0;}
+.letter-sub { font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; color: #777; margin-top: 4px; }
+.envelope-hint { font-size: 0.75rem; color: rgba(255, 255, 255, 0.55); letter-spacing: 1px; text-shadow: 0 2px 4px rgba(0,0,0,0.5); animation: pulseHint 2.5s infinite; }
+.envelope-wrapper.open .envelope-top { transform: rotateX(180deg); z-index: 1; }
+.envelope-wrapper.open .letter { transform: translateY(-120px) scale(1.02); z-index: 5; }
+.envelope-overlay.fade-out { opacity: 0; transform: translateY(-100vh); pointer-events: none; }
 
 /* --- СЕКЦІЯ 2: HERO --- */
 .hero-section {
-    position: relative;
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    position: relative; width: 100%; min-height: 100vh; display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
     background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.15)), var(--hero-bg-image) no-repeat center center/cover;
-    padding: 0;
-    box-sizing: border-box;
-    overflow: hidden;
-
-    /* Маска, що імітує мазки ластика внизу */
+    padding: 0; box-sizing: border-box; overflow: hidden;
     -webkit-mask-image: linear-gradient(to top, transparent 0%, transparent 6%, black 25%);
     mask-image: linear-gradient(to top, transparent 0%, transparent 6%, black 25%);
 }
-
-/* МЕРЕЖИВО (150px / зсув -80px) */
-.hero-lace {
-    position: absolute;
-    z-index: 5;
-    pointer-events: none;
-    background-image: url('lace.svg');
-    background-repeat: repeat-x;
-    
-    /* Додаємо початкову прихованість та плавний перехід */
-    opacity: 0;
-    transition: opacity 1.2s ease-in-out;
-}
-
-.lace-top {
-    top: -80px;
-    left: 0;
-    right: 0;
-    height: 150px;
-    background-position: top center;
-    background-size: auto 150px;
-}
-
-.lace-bottom {
-    bottom: -80px;
-    left: 0;
-    right: 0;
-    height: 150px;
-    background-position: bottom center;
-    background-size: auto 150px;
-    transform: scaleY(-1);
-}
-
-.lace-left {
-    top: 0;
-    left: -80px;
-    width: 100vh;
-    height: 150px;
-    background-size: auto 150px;
-    transform-origin: top left;
-    transform: rotate(90deg) translateY(-150px);
-}
-
-.lace-right {
-    top: 0;
-    right: -80px;
-    width: 100vh;
-    height: 150px;
-    background-size: auto 150px;
-    transform-origin: top right;
-    transform: rotate(-90deg) translateY(-150px);
-}
-
-/* --- ТЕКСТ HERO --- */
 .hero-tagline {
-    font-size: 1.1rem;
-    color: #ffffff;
-    letter-spacing: 8px;
-    text-transform: uppercase;
-    margin-bottom: 25px;
-    font-weight: 300;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
-    z-index: 3;
-    opacity: 0;
+    font-size: 1.1rem; color: var(--site-text-light); letter-spacing: 8px; text-transform: uppercase;
+    margin-bottom: 25px; font-weight: 300; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7); z-index: 3; opacity: 0;
 }
-
-.hero-tagline span {
-    font-family: var(--primary-font);
-    text-transform: lowercase;
-    font-style: italic;
-    font-size: 1.4rem;
-    letter-spacing: 1px;
-}
-
+.hero-tagline span { font-family: var(--primary-font); text-transform: lowercase; font-style: italic; font-size: 1.4rem; letter-spacing: 1px; }
 .hero-names {
-    font-family: var(--primary-font);
-    font-size: 5.5rem;
-    font-weight: 400;
-    color: #ffffff;
-    line-height: 1.2;
-    letter-spacing: 1px;
-    text-align: center;
-    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
-    z-index: 3;
-    margin: 0;
+    font-family: var(--primary-font); font-size: var(--fs-hero-names); font-weight: 400;
+    color: var(--site-text-light); line-height: 1.2; letter-spacing: 1px; text-align: center;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8); z-index: 3; margin: 0;
 }
-
-.hero-names span {
-    display: block;
-}
-
-.hero-names .ampersand {
-    font-size: 3.5rem;
-    margin: 10px 0;
-    color: #ffffff;
-}
-
-.hero-date {
-    font-size: 1.2rem;
-    color: #ffffff;
-    letter-spacing: 4px;
-    margin-top: 30px;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
-    z-index: 3;
-    opacity: 0;
-}
-
-.scroll-arrow {
-    position: absolute;
-    bottom: 30px;
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 0.9rem;
-    animation: bounceArrow 2.5s infinite;
-    z-index: 3;
-}
+.hero-names span { display: block; }
+.hero-names .ampersand { font-size: calc(var(--fs-hero-names) * 0.6); margin: 10px 0; color: var(--site-text-light); }
+.hero-date { font-size: 1.2rem; color: var(--site-text-light); letter-spacing: 4px; margin-top: 30px; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7); z-index: 3; opacity: 0; }
+.scroll-arrow { position: absolute; bottom: 30px; color: rgba(255, 255, 255, 0.8); font-size: 0.9rem; animation: bounceArrow 2.5s infinite; z-index: 3; }
 
 /* --- СЕКЦІЯ 3: INVITATION SECTION --- */
-/* --- INVITATION SECTION --- */
-.invitation-section {
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: var(--site-bg-section); /* Повернуто ваш оригінальний фон */
-    padding: 90px 24px;
-    box-sizing: border-box;
-    position: relative;
-}
+.invitation-section { width: 100%; min-height: 100vh; display: flex; justify-content: center; align-items: center; background: var(--site-bg-section); padding: 90px 24px; box-sizing: border-box; position: relative; }
+.invitation-content { width: 100%; max-width: 400px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+.invitation-badge { margin-bottom: 8px; }
+.badge-initials { font-family: var(--secondary-font); font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase; color: var(--color-bordeaux); font-weight: 500; }
+.invitation-divider { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 20px; width: 100%; }
+.invitation-divider .divider-line { width: 35px; height: 1px; background: linear-gradient(90deg, transparent, rgba(128, 0, 32, 0.4), transparent); }
+.invitation-divider .divider-diamond { font-size: 0.45rem; color: var(--color-bordeaux); opacity: 0.7; }
+.invitation-title { font-family: var(--primary-font); font-size: var(--fs-section-title); font-style: italic; font-weight: 400; color: var(--color-bordeaux); margin: 0 0 16px 0; line-height: 1.05; letter-spacing: -0.5px; }
+.accent-text { font-family: var(--primary-font); font-size: 1.45rem; color: var(--color-choco); line-height: 1.35; font-style: italic; margin: 0 0 16px 0; font-weight: 400; }
+.main-text { font-family: var(--secondary-font); font-size: 0.9rem; line-height: 1.75; color: var(--color-choco); opacity: 0.8; font-weight: 300; letter-spacing: 0.2px; margin: 0 0 32px 0; padding: 0 10px; }
+.gate-wrapper { width: 100%; display: flex; justify-content: center; }
+.gate-frame { position: relative; padding: 8px; border-radius: 120px 120px 0 0; }
+.wedding-gate-photo { width: 240px; height: 300px; object-fit: cover; display: block; -webkit-mask-image: linear-gradient(to top, transparent 0%, transparent 10%, black 40%); mask-image: linear-gradient(to top, transparent 0%, transparent 10%, black 40%); }
 
-.invitation-content {
-    width: 100%;
-    max-width: 400px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-/* Монограма (М & Л) */
-.invitation-badge {
-    margin-bottom: 8px;
-}
-
-.badge-initials {
-    font-family: var(--secondary-font);
-    font-size: 0.75rem;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: #800020; /* Бордовий акцент */
-    font-weight: 500;
-}
-
-/* Елегантний розділювач з ромбом */
-.invitation-divider {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    margin-bottom: 20px;
-    width: 100%;
-}
-
-.invitation-divider .divider-line {
-    width: 35px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(128, 0, 32, 0.4), transparent);
-}
-
-.invitation-divider .divider-diamond {
-    font-size: 0.45rem;
-    color: #800020;
-    opacity: 0.7;
-}
-
-/* Заголовок та типографіка */
-.invitation-title {
-    font-family: var(--primary-font);
-    font-size: 3rem;
-    font-style: italic;
-    font-weight: 400;
-    color: #800020; /* Глибокий бордовий для головного заголовка */
-    margin: 0 0 16px 0;
-    line-height: 1.05;
-    letter-spacing: -0.5px;
-}
-
-.accent-text {
-    font-family: var(--primary-font);
-    font-size: 1.45rem;
-    color: #3D2314; /* Шоколадний колір з вашої палітри */
-    line-height: 1.35;
-    font-style: italic;
-    margin: 0 0 16px 0;
-    font-weight: 400;
-}
-
-.main-text {
-    font-family: var(--secondary-font);
-    font-size: 0.9rem;
-    line-height: 1.75;
-    color: #3D2314;
-    opacity: 0.8;
-    font-weight: 300;
-    letter-spacing: 0.2px;
-    margin: 0 0 32px 0;
-    padding: 0 10px;
-}
-
-/* Рамка та обгортка для зображення */
-.gate-wrapper {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.gate-frame {
-    position: relative;
-    padding: 8px;
-    /* border: 1px solid rgba(128, 0, 32, 0.2); Бордова тонка рамка навколо фото */
-    border-radius: 120px 120px 0 0; /* Арочний верх рамки під весільну тему */
-}
-
-.wedding-gate-photo {
-    width: 240px;
-    height: 300px;
-    object-fit: cover;
-    display: block;
-    /* border-radius: 112px 112px 0 0; */
-    
-    /* Ваше стирання ластиком знизу */
-    -webkit-mask-image: linear-gradient(to top, transparent 0%, transparent 10%, black 40%);
-    mask-image: linear-gradient(to top, transparent 0%, transparent 10%, black 40%);
-}
-
-/* --- АНІМАЦІЯ СЕКЦІЇ --- */
-.anim-row {
-    opacity: 0;
-    transform: translateY(20px);
-    will-change: opacity, transform;
-}
-
-.invitation-section.scrolled-into-view .anim-row {
-    animation: fadeInUpRow 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
+.anim-row { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.invitation-section.scrolled-into-view .anim-row { animation: fadeInUpRow 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
 .invitation-section.scrolled-into-view .anim-row:nth-child(1) { animation-delay: 0.1s; }
 .invitation-section.scrolled-into-view .anim-row:nth-child(2) { animation-delay: 0.2s; }
 .invitation-section.scrolled-into-view .anim-row:nth-child(3) { animation-delay: 0.3s; }
@@ -589,1069 +198,133 @@ html, body {
 .invitation-section.scrolled-into-view .anim-row:nth-child(5) { animation-delay: 0.5s; }
 .invitation-section.scrolled-into-view .anim-row:nth-child(6) { animation-delay: 0.6s; }
 
-@keyframes fadeInUpRow {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+@keyframes fadeInUpRow { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
 /* --- СЕКЦІЯ 4: ФОТО --- */
-.photo-section {
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: var(--site-bg-section);
-    padding: 50px 20px;
-    box-sizing: border-box;
-}
-
-.photo-card-wrapper {
-    width: 100%;
-    max-width: 360px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.photo-card {
-    background: rgba(255, 255, 255, 0.65);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    padding: 12px;
-    width: 100%;
-    height: 75vh;  
-    display: flex;
-    border-radius: 8px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05), 0 2px 10px rgba(0, 0, 0, 0.02);
-    box-sizing: border-box;
-    opacity: 0;
-    will-change: opacity, transform;
-}
-
-.photo-wrapper {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    border-radius: 4px;
-    overflow: hidden;
-}
-
-.photo-split {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    will-change: transform, opacity;
-}
-
-.photo-split-left {
-    clip-path: inset(0 50% 0 0);
-    transform: translateX(-80px);
-}
-
-.photo-split-right {
-    clip-path: inset(0 0 0 50%);
-    transform: translateX(80px);
-}
-
-.photo-overlay-glare {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: linear-gradient(120deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 100%);
-    pointer-events: none;
-}
-
-.photo-footer-date {
-    font-family: var(--secondary-font);
-    font-size: 0.85rem;
-    font-weight: 400;
-    color: var(--site-text-dark);
-    letter-spacing: 5px;
-    text-align: center;
-    margin-top: 25px;
-    opacity: 0.8;
-}
+.photo-section { width: 100%; min-height: 100vh; display: flex; justify-content: center; align-items: center; background: var(--site-bg-section); padding: 50px 20px; box-sizing: border-box; }
+.photo-card-wrapper { width: 100%; max-width: 360px; display: flex; flex-direction: column; align-items: center; }
+.photo-card { background: rgba(255, 255, 255, 0.65); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.8); padding: 12px; width: 100%; height: 75vh; display: flex; border-radius: 8px; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05), 0 2px 10px rgba(0, 0, 0, 0.02); box-sizing: border-box; opacity: 0; }
+.photo-wrapper { position: relative; width: 100%; height: 100%; border-radius: 4px; overflow: hidden; }
+.photo-split { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; }
+.photo-split-left { clip-path: inset(0 50% 0 0); transform: translateX(-80px); }
+.photo-split-right { clip-path: inset(0 0 0 50%); transform: translateX(80px); }
+.photo-overlay-glare { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(120deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 100%); pointer-events: none; }
+.photo-footer-date { font-family: var(--secondary-font); font-size: 0.85rem; font-weight: 400; color: var(--site-text-dark); letter-spacing: 5px; text-align: center; margin-top: 25px; opacity: 0.8; }
 
 /* --- СЕКЦІЯ 5: ЛОКАЦІЯ --- */
-.location-section {
-    width: 100%;
-    min-height: 60vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: var(--site-bg-section);
-    padding: 60px 20px;
-}
+.location-section { width: 100%; min-height: 60vh; display: flex; justify-content: center; align-items: center; background: var(--site-bg-section); padding: 60px 20px; }
+.location-container { width: 100%; max-width: 360px; text-align: center; display: flex; flex-direction: column; align-items: center; }
+.location-subtitle { font-family: var(--primary-font); font-size: 1.5rem; font-style: italic; color: var(--site-text-dark); margin: 0 0 10px 0; }
+.location-title { font-family: var(--primary-font); font-size: var(--fs-section-subtitle); font-weight: 400; color: var(--site-text-dark); letter-spacing: 2px; margin: 0 0 20px 0; line-height: 1.2; opacity: 0; transform: scale(0.85); }
+.location-section.scrolled-into-view .location-title { animation: popCenter 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards; }
+.location-address { font-family: var(--primary-font); font-size: 1.25rem; color: var(--site-text-muted); line-height: 1.4; margin: 0 0 35px 0; }
+.location-btn { display: inline-block; padding: 14px 28px; font-family: var(--secondary-font); font-size: 0.75rem; letter-spacing: 3px; color: var(--site-text-dark); text-decoration: none; text-transform: uppercase; background: transparent; border: 1px solid rgba(44, 44, 44, 0.4); box-shadow: 0 0 0 3px rgba(44, 44, 44, 0.1); transition: all 0.4s ease; }
+.location-btn:hover { background: rgba(44, 44, 44, 0.05); box-shadow: 0 0 0 3px rgba(44, 44, 44, 0.4); }
 
-.location-container {
-    width: 100%;
-    max-width: 360px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+/* --- СЕКЦІЯ 6: ТАЙМІНГ ДНЯ --- */
+.schedule-section { position: relative; width: 100%; min-height: 100vh; display: flex; justify-content: center; align-items: center; background: url(background.jpg) no-repeat center center/cover; padding: 80px 20px; box-sizing: border-box; overflow: hidden; }
+.schedule-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, rgba(15, 2, 6, 0.5) 0%, rgba(5, 1, 2, 0.88) 100%); backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px); z-index: 1; }
+.schedule-container { position: relative; z-index: 2; width: 100%; max-width: 380px; text-align: center; color: var(--site-text-light); }
+.schedule-header { margin-bottom: 40px; }
+.schedule-subtitle { font-family: var(--secondary-font), sans-serif; font-size: 0.68rem; letter-spacing: 5px; text-transform: uppercase; color: var(--site-text-light); opacity: 0.6; display: block; margin-bottom: 6px; }
+.schedule-title { font-family: var(--primary-font), serif; font-size: var(--fs-section-title); font-weight: 400; letter-spacing: 3px; color: var(--site-text-light); margin: 0; line-height: 1.1; }
+.schedule-divider { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 15px; }
+.schedule-divider .line { width: 45px; height: 1px; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent); }
+.schedule-divider .diamond { font-size: 0.45rem; color: var(--site-text-light); opacity: 0.8; }
+.schedule-list { display: flex; flex-direction: column; gap: 32px; position: relative; }
+.schedule-list::before { content: ''; position: absolute; top: 30px; bottom: 30px; left: 50%; transform: translateX(-50%); width: 1px; background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.25) 15%, rgba(255, 255, 255, 0.25) 85%, transparent); pointer-events: none; z-index: 0; }
+.schedule-item { display: flex; flex-direction: column; align-items: center; position: relative; z-index: 1; opacity: 0; transform: translateY(30px); }
+.schedule-item.clickable { cursor: pointer; position: relative; }
+.schedule-icon-box { width: 58px; height: 58px; border-radius: 50%; background: rgba(15, 2, 6, 0.7); border: 1px solid rgba(255, 255, 255, 0.25); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); display: flex; justify-content: center; align-items: center; margin-bottom: 12px; color: var(--site-text-light); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), background 0.3s ease, border-color 0.3s ease; }
+.schedule-icon-box svg { width: 26px; height: 26px; stroke: var(--site-text-light); }
+.schedule-content { display: flex; flex-direction: column; align-items: center; }
+.schedule-time { font-family: var(--primary-font), serif; font-size: 1.5rem; letter-spacing: 1.5px; color: var(--site-text-light); margin-bottom: 2px; font-weight: 500; }
+.schedule-label { font-family: var(--secondary-font), sans-serif; font-size: 0.78rem; letter-spacing: 2px; text-transform: uppercase; color: rgba(255, 255, 255, 0.75); font-weight: 300; }
+.schedule-action-btn { display: inline-block; margin-top: 8px; font-family: var(--secondary-font), sans-serif; font-size: 0.65rem; letter-spacing: 1px; text-transform: uppercase; color: rgba(255, 255, 255, 0.9); border-bottom: 1px dashed rgba(255, 255, 255, 0.4); padding-bottom: 2px; transition: all 0.3s ease; }
+.schedule-item.clickable:hover { transform: translateY(-5px) !important; }
+.schedule-item.clickable:active { transform: translateY(-2px) scale(0.98) !important; }
+.schedule-item.clickable:hover .schedule-icon-box { transform: translateY(-4px); background: rgba(255, 255, 255, 0.15); border-color: rgba(255, 255, 255, 0.6); }
+.schedule-item.clickable:hover .schedule-action-btn { color: var(--site-text-light); border-bottom-color: var(--site-text-light); }
 
-.location-subtitle {
-    font-family: var(--primary-font);
-    font-size: 1.5rem;
-    font-style: italic;
-    color: var(--site-text-dark);
-    margin: 0 0 10px 0;
-}
-
-.location-title {
-    font-family: var(--primary-font);
-    font-size: 2.2rem;
-    font-weight: 400;
-    color: var(--site-text-dark);
-    letter-spacing: 2px;
-    margin: 0 0 20px 0;
-    line-height: 1.2;
-    opacity: 0;
-    transform: scale(0.85);
-}
-
-.location-section.scrolled-into-view .location-title {
-    animation: popCenter 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
-}
-
-.location-address {
-    font-family: var(--primary-font);
-    font-size: 1.25rem;
-    color: var(--site-text-muted);
-    line-height: 1.4;
-    margin: 0 0 35px 0;
-}
-
-.location-btn {
-    display: inline-block;
-    padding: 14px 28px;
-    font-family: var(--secondary-font);
-    font-size: 0.75rem;
-    letter-spacing: 3px;
-    color: var(--site-text-dark);
-    text-decoration: none;
-    text-transform: uppercase;
-    background: transparent;
-    border: 1px solid rgba(44, 44, 44, 0.4);
-    box-shadow: 0 0 0 3px rgba(44, 44, 44, 0.1);
-    transition: all 0.4s ease;
-}
-
-.location-btn:hover {
-    background: rgba(44, 44, 44, 0.05);
-    box-shadow: 0 0 0 3px rgba(44, 44, 44, 0.4);
-}
-
-/* --- СЕКЦІЯ 6: ТАЙМІНГ ДНЯ (3 елементи / Luxury Timeline) --- */
-.schedule-section {
-    position: relative;
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: url(background.jpg) no-repeat center center/cover;
-    padding: 80px 20px;
-    box-sizing: border-box;
-    overflow: hidden;
-}
-
-.schedule-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(
-        circle at center, 
-        rgba(15, 2, 6, 0.5) 0%, 
-        rgba(5, 1, 2, 0.88) 100%
-    );
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
-    z-index: 1;
-}
-
-.schedule-container {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    max-width: 380px;
-    text-align: center;
-    color: #FFFFFF;
-}
-
-/* Шапка */
-.schedule-header {
-    margin-bottom: 40px;
-}
-
-.schedule-subtitle {
-    font-family: var(--secondary-font), sans-serif;
-    font-size: 0.68rem;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    color: #FFFFFF;
-    opacity: 0.6;
-    display: block;
-    margin-bottom: 6px;
-}
-
-.schedule-title {
-    font-family: var(--primary-font), serif;
-    font-size: 2.6rem;
-    font-weight: 400;
-    letter-spacing: 3px;
-    color: #FFFFFF;
-    margin: 0;
-    line-height: 1.1;
-}
-
-.schedule-divider {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    margin-top: 15px;
-}
-
-.schedule-divider .line {
-    width: 45px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
-}
-
-.schedule-divider .diamond {
-    font-size: 0.45rem;
-    color: #FFFFFF;
-    opacity: 0.8;
-}
-
-/* Вертикальний список */
-.schedule-list {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-    position: relative;
-}
-
-/* Вертикальна вісь між елементами */
-.schedule-list::before {
-    content: '';
-    position: absolute;
-    top: 30px;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 1px;
-    background: linear-gradient(
-        180deg, 
-        transparent, 
-        rgba(255, 255, 255, 0.25) 15%, 
-        rgba(255, 255, 255, 0.25) 85%, 
-        transparent
-    );
-    pointer-events: none;
-    z-index: 0;
-}
-
-/* Картка елемента */
-.schedule-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    z-index: 1;
-    opacity: 0;
-    transform: translateY(30px);
-    will-change: transform, opacity;
-}
-
-.schedule-item.clickable {
-    cursor: pointer;
-}
-
-/* Іконка в скляному колі */
-.schedule-icon-box {
-    width: 58px;
-    height: 58px;
-    border-radius: 50%;
-    background: rgba(15, 2, 6, 0.7);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 12px;
-    color: #FFFFFF;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), background 0.3s ease, border-color 0.3s ease;
-}
-
-.schedule-icon-box svg {
-    width: 26px;
-    height: 26px;
-    stroke: #FFFFFF;
-}
-
-.schedule-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.schedule-time {
-    font-family: var(--primary-font), serif;
-    font-size: 1.5rem;
-    letter-spacing: 1.5px;
-    color: #FFFFFF;
-    margin-bottom: 2px;
-    font-weight: 500;
-}
-
-.schedule-label {
-    font-family: var(--secondary-font), sans-serif;
-    font-size: 0.78rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.75);
-    font-weight: 300;
-}
-
-/* Кнопка-посилання під текстом */
-.schedule-action-btn {
-    display: inline-block;
-    margin-top: 6px;
-    font-family: var(--secondary-font), sans-serif;
-    font-size: 0.65rem;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.9);
-    border-bottom: 1px dashed rgba(255, 255, 255, 0.4);
-    padding-bottom: 2px;
-    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), color 0.3s ease, border-color 0.3s ease;
-}
-
-/* Ефекти наведення без миготіння */
-.schedule-item.clickable:hover .schedule-icon-box {
-    transform: translateY(-4px);
-    background: rgba(255, 255, 255, 0.15);
-    border-color: rgba(255, 255, 255, 0.6);
-}
-
-.schedule-item.clickable:hover .schedule-action-btn {
-    transform: translateY(-2px);
-    color: #FFFFFF;
-    border-bottom-color: #FFFFFF;
-}
-
-.schedule-item.clickable:active .schedule-icon-box,
-.schedule-item.clickable:active .schedule-action-btn {
-    transform: translateY(0) scale(0.96);
-}
-
-/* Анімація появи знизу вгору по черзі */
-.schedule-section.scrolled-into-view .schedule-item {
-    animation: scheduleFadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
+.schedule-section.scrolled-into-view .schedule-item { animation: scheduleFadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
 .schedule-section.scrolled-into-view .schedule-item:nth-child(1) { animation-delay: 0.2s; }
 .schedule-section.scrolled-into-view .schedule-item:nth-child(2) { animation-delay: 0.4s; }
 .schedule-section.scrolled-into-view .schedule-item:nth-child(3) { animation-delay: 0.6s; }
 
-@keyframes scheduleFadeUp {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+@keyframes scheduleFadeUp { to { opacity: 1; transform: translateY(0); } }
 
 /* --- СЕКЦІЯ 7: DRESS CODE --- */
-.dresscode-section {
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: var(--site-bg-section);
-    padding: 60px 20px;
-}
-
-.dresscode-container {
-    width: 100%;
-    max-width: 360px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.dresscode-title {
-    font-family: var(--primary-font);
-    font-size: 2.2rem;
-    font-weight: 400;
-    color: var(--site-text-dark);
-    letter-spacing: 3px;
-    margin: 0 0 25px 0;
-}
-
-.dresscode-image-wrapper {
-    width: 100%;
-    max-width: 280px;
-    margin-bottom: 30px;
-    opacity: 0;
-    transform: translateX(60px);
-}
-
+.dresscode-section { width: 100%; min-height: 100vh; display: flex; justify-content: center; align-items: center; background: var(--site-bg-section); padding: 60px 20px; }
+.dresscode-container { width: 100%; max-width: 360px; text-align: center; display: flex; flex-direction: column; align-items: center; }
+.dresscode-title { font-family: var(--primary-font); font-size: var(--fs-section-subtitle); font-weight: 400; color: var(--site-text-dark); letter-spacing: 3px; margin: 0 0 25px 0; }
+.dresscode-image-wrapper { width: 100%; max-width: 280px; margin-bottom: 30px; opacity: 0; transform: translateX(60px); }
 .dresscode-illustration { width: 100%; height: auto; display: block; }
-
-.dresscode-text-accent, .dresscode-text-main {
-    font-family: var(--primary-font);
-    font-size: 1.3rem;
-    color: var(--site-text-muted);
-    line-height: 1.35;
-    margin-bottom: 20px;
-}
-
-.color-palette {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 35px;
-    flex-wrap: wrap;
-    opacity: 0;
-    transform: translateX(-60px);
-}
-
-.dresscode-section.scrolled-into-view .dresscode-image-wrapper {
-    animation: slideInFromRight 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
-}
-
-.dresscode-section.scrolled-into-view .color-palette {
-    animation: slideInFromLeft 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
-}
-
+.dresscode-text-accent, .dresscode-text-main { font-family: var(--primary-font); font-size: 1.3rem; color: var(--site-text-muted); line-height: 1.35; margin-bottom: 20px; }
+.color-palette { display: flex; justify-content: center; align-items: center; gap: 10px; margin-bottom: 35px; flex-wrap: wrap; opacity: 0; transform: translateX(-60px); }
+.dresscode-section.scrolled-into-view .dresscode-image-wrapper { animation: slideInFromRight 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards; }
+.dresscode-section.scrolled-into-view .color-palette { animation: slideInFromLeft 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards; }
 @keyframes slideInFromRight { to { opacity: 1; transform: translateX(0); } }
 @keyframes slideInFromLeft { to { opacity: 1; transform: translateX(0); } }
-
-.color-dot {
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
-    box-shadow: 0 5px 9px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-}
-
+.color-dot { width: 52px; height: 52px; border-radius: 50%; box-shadow: 0 5px 9px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease; }
 .color-dot:hover { transform: scale(1.1); }
 
-.dresscode-note {
-    font-family: var(--primary-font);
-    font-size: 1.2rem;
-    font-style: italic;
-    color: #555555;
-}
+/* --- СЕКЦІЯ RSVP та ALCOHOL (Спільні стилі форм) --- */
+.rsvp-section, .alcohol-section { width: 100%; min-height: 100vh; display: flex; justify-content: center; align-items: center; background: var(--site-bg-dark); padding: 80px 20px; box-sizing: border-box; position: relative; z-index: 2; }
+.rsvp-container, .alcohol-container { width: 100%; max-width: 440px; background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); padding: 50px 30px; box-sizing: border-box; border-radius: 4px; box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4); opacity: 1 !important; visibility: visible !important; }
+.rsvp-header, .alcohol-header { text-align: center; margin-bottom: 32px; }
+.rsvp-subtitle, .alcohol-subtitle { font-family: var(--secondary-font), sans-serif; font-size: 0.68rem; letter-spacing: 5px; text-transform: uppercase; color: var(--site-text-light); opacity: 0.6; display: block; margin-bottom: 8px; }
+.rsvp-title, .alcohol-title { font-family: var(--primary-font), serif; font-size: var(--fs-section-title); color: var(--site-text-light); margin: 0; line-height: 0.95; font-weight: 400; letter-spacing: 3px; }
+.rsvp-divider, .alcohol-divider { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 20px 0; }
+.rsvp-divider .line, .alcohol-divider .line { width: 45px; height: 1px; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent); }
+.rsvp-divider .diamond, .alcohol-divider .diamond { font-size: 0.45rem; color: var(--site-text-light); opacity: 0.8; }
+.rsvp-deadline, .alcohol-description { font-family: var(--primary-font), serif; font-size: 1.15rem; color: rgba(255, 255, 255, 0.85); line-height: 1.45; font-style: italic; margin: 0; }
+.rsvp-deadline strong { color: var(--site-text-light); font-weight: 500; font-style: normal; border-bottom: 1px dashed rgba(255, 255, 255, 0.5); }
+.rsvp-form, .alcohol-form { display: flex; flex-direction: column; gap: 24px; transition: opacity 0.4s ease; }
+.form-group { display: flex; flex-direction: column; gap: 8px; text-align: left; }
+.form-group label { font-family: var(--primary-font), serif; font-size: 1.1rem; color: var(--site-text-light); font-style: italic; opacity: 0.9; }
+.form-group input[type="text"], .form-group textarea { width: 100%; background: transparent; border: none; border-bottom: 1px solid rgba(255, 255, 255, 0.25); padding: 10px 0; color: var(--site-text-light); font-family: var(--secondary-font), sans-serif; font-size: 0.9rem; outline: none; box-sizing: border-box; transition: border-color 0.4s ease; }
+.form-group input[type="text"]::placeholder, .form-group textarea::placeholder { color: rgba(255, 255, 255, 0.3); font-weight: 300; }
+.form-group input[type="text"]:focus, .form-group textarea:focus { border-bottom-color: var(--site-text-light); }
+.radio-group, .alcohol-options { display: flex; flex-direction: column; gap: 14px; margin-top: 6px; }
+.radio-label, .checkbox-label { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+.checkbox-label { padding: 12px 14px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 2px; transition: all 0.3s ease; }
+.checkbox-label:hover { background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 255, 255, 0.3); }
+.radio-label input[type="radio"], .checkbox-label input[type="checkbox"] { display: none; }
+.custom-radio, .custom-checkbox { border: 1px solid rgba(255, 255, 255, 0.4); display: inline-block; position: relative; flex-shrink: 0; transition: all 0.3s ease; }
+.custom-radio { width: 15px; height: 15px; border-radius: 50%; }
+.custom-checkbox { width: 15px; height: 15px; border-radius: 2px; }
+.radio-text, .option-text { font-family: var(--secondary-font), sans-serif; font-size: 0.85rem; color: rgba(255, 255, 255, 0.75); font-weight: 300; transition: color 0.3s ease; }
+.radio-label:hover .radio-text { color: var(--site-text-light); }
+.radio-label input[type="radio"]:checked + .custom-radio, .checkbox-label input[type="checkbox"]:checked + .custom-checkbox { border-color: var(--site-text-light); }
+.radio-label input[type="radio"]:checked + .custom-radio::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 7px; height: 7px; background-color: var(--site-text-light); border-radius: 50%; }
+.checkbox-label input[type="checkbox"]:checked + .custom-checkbox { background-color: var(--site-text-light); }
+.checkbox-label input[type="checkbox"]:checked + .custom-checkbox::after { content: '✓'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -52%); color: #000000; font-size: 11px; font-weight: bold; }
+.radio-label input[type="radio"]:checked ~ .radio-text, .checkbox-label input[type="checkbox"]:checked ~ .option-text { color: var(--site-text-light); font-weight: 400; }
+.checkbox-label:has(input[type="checkbox"]:checked) { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.4); }
+.rsvp-submit-btn, .alcohol-submit-btn { margin-top: 12px; background: transparent; color: var(--site-text-light); border: 1px solid rgba(255, 255, 255, 0.6); padding: 16px; font-family: var(--secondary-font), sans-serif; font-size: 0.78rem; letter-spacing: 4px; cursor: pointer; border-radius: 2px; transition: all 0.4s ease; width: 100%; }
+.rsvp-submit-btn:hover, .alcohol-submit-btn:hover { background: var(--site-text-light); color: #000000; border-color: var(--site-text-light); box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2); }
+.rsvp-success-message, .alcohol-success-message { font-family: var(--primary-font), serif; font-size: 1.2rem; text-align: center; padding: 18px; color: var(--site-text-light); background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 2px; margin-top: 15px; font-style: italic; box-sizing: border-box; line-height: 1.4; opacity: 0; }
 
-/* --- СЕКЦІЯ RSVP (Монохромна біло-кремова палітра) --- */
-.rsvp-section {
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: var(--site-bg-dark, #000000);
-    padding: 80px 20px;
-    box-sizing: border-box;
-    position: relative;
-    z-index: 2;
-}
-
-/* Легка прозора картка */
-.rsvp-container {
-    width: 100%;
-    max-width: 440px;
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 50px 30px;
-    box-sizing: border-box;
-    border-radius: 4px;
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
-    opacity: 1 !important;
-    visibility: visible !important;
-}
-
-/* Шапка та заголовок */
-.rsvp-header {
-    text-align: center;
-    margin-bottom: 32px;
-}
-
-.rsvp-subtitle {
-    font-family: var(--secondary-font), sans-serif;
-    font-size: 0.68rem;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    color: #FFFFFF;
-    opacity: 0.6;
-    display: block;
-    margin-bottom: 8px;
-}
-
-.rsvp-title {
-    font-family: var(--primary-font), serif;
-    font-size: 3.4rem;
-    color: #FFFFFF;
-    margin: 0;
-    line-height: 0.95;
-    font-weight: 400;
-    letter-spacing: 3px;
-}
-
-.rsvp-divider {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    margin: 20px 0;
-}
-
-.rsvp-divider .line {
-    width: 45px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-}
-
-.rsvp-divider .diamond {
-    font-size: 0.45rem;
-    color: #FFFFFF;
-    opacity: 0.8;
-}
-
-.rsvp-deadline {
-    font-family: var(--primary-font), serif;
-    font-size: 1.15rem;
-    color: rgba(255, 255, 255, 0.85);
-    line-height: 1.45;
-    font-style: italic;
-    margin: 0;
-}
-
-.rsvp-deadline strong {
-    color: #FFFFFF;
-    font-weight: 500;
-    font-style: normal;
-    border-bottom: 1px dashed rgba(255, 255, 255, 0.5);
-}
-
-/* Форма */
-.rsvp-form {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    text-align: left;
-}
-
-.form-group label {
-    font-family: var(--primary-font), serif;
-    font-size: 1.1rem;
-    color: #FFFFFF;
-    font-style: italic;
-    opacity: 0.9;
-}
-
-/* Інпути з білою лінією */
-.form-group input[type="text"],
-.form-group textarea {
-    width: 100%;
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
-    padding: 10px 0;
-    color: #FFFFFF;
-    font-family: var(--secondary-font), sans-serif;
-    font-size: 0.9rem;
-    outline: none;
-    box-sizing: border-box;
-    transition: border-color 0.4s ease;
-}
-
-.form-group input[type="text"]::placeholder,
-.form-group textarea::placeholder {
-    color: rgba(255, 255, 255, 0.3);
-    font-weight: 300;
-}
-
-.form-group input[type="text"]:focus,
-.form-group textarea:focus {
-    border-bottom-color: #FFFFFF;
-}
-
-/* Перемикачі (Radio) */
-.radio-group {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    margin-top: 6px;
-}
-
-.radio-label {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    cursor: pointer;
-}
-
-.radio-label input[type="radio"] {
-    display: none;
-}
-
-.custom-radio {
-    width: 15px;
-    height: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    border-radius: 50%;
-    display: inline-block;
-    position: relative;
-    flex-shrink: 0;
-    transition: all 0.3s ease;
-}
-
-.radio-text {
-    font-family: var(--secondary-font), sans-serif;
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.75);
-    font-weight: 300;
-}
-
-.radio-label:hover .radio-text {
-    color: #FFFFFF;
-}
-
-.radio-label input[type="radio"]:checked + .custom-radio {
-    border-color: #FFFFFF;
-}
-
-.radio-label input[type="radio"]:checked + .custom-radio::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 7px;
-    height: 7px;
-    background-color: #FFFFFF;
-    border-radius: 50%;
-}
-
-.radio-label input[type="radio"]:checked ~ .radio-text {
-    color: #FFFFFF;
-}
-
-/* Біла витончена кнопка */
-.rsvp-submit-btn {
-    margin-top: 12px;
-    background: transparent;
-    color: #FFFFFF;
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    padding: 16px;
-    font-family: var(--secondary-font), sans-serif;
-    font-size: 0.78rem;
-    letter-spacing: 4px;
-    cursor: pointer;
-    border-radius: 2px;
-    transition: all 0.4s ease;
-}
-
-.rsvp-submit-btn:hover {
-    background: #FFFFFF;
-    color: #000000;
-    border-color: #FFFFFF;
-    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
-}
-
-/* Повідомлення про успіх у стилі секції RSVP */
-.rsvp-success-message {
-    font-family: var(--primary-font), serif;
-    font-size: 1.2rem;
-    text-align: center;
-    padding: 18px;
-    color: #FFFFFF;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 2px;
-    margin-top: 15px;
-    font-style: italic;
-    box-sizing: border-box;
-    line-height: 1.4;
-}
-/* --- СЕКЦІЯ НАПОЇ ТА АЛКОГОЛЬ (Монохромна біла палітра) --- */
-.alcohol-section {
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: var(--site-bg-dark, #000000);
-    padding: 80px 20px;
-    box-sizing: border-box;
-    position: relative;
-    z-index: 2;
-}
-
-/* Прозора картка з ефектом матового стекла */
-.alcohol-container {
-    width: 100%;
-    max-width: 440px;
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 50px 30px;
-    box-sizing: border-box;
-    border-radius: 4px;
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
-    opacity: 1 !important;
-    visibility: visible !important;
-}
-
-/* Шапка та типографіка */
-.alcohol-header {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.alcohol-subtitle {
-    font-family: var(--secondary-font), sans-serif;
-    font-size: 0.68rem;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    color: #FFFFFF;
-    opacity: 0.6;
-    display: block;
-    margin-bottom: 8px;
-}
-
-.alcohol-title {
-    font-family: var(--primary-font), serif;
-    font-size: 2.4rem;
-    color: #FFFFFF;
-    margin: 0;
-    line-height: 1.1;
-    font-weight: 400;
-    letter-spacing: 2px;
-}
-
-.alcohol-divider {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    margin: 18px 0;
-}
-
-.alcohol-divider .line {
-    width: 45px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-}
-
-.alcohol-divider .diamond {
-    font-size: 0.45rem;
-    color: #FFFFFF;
-    opacity: 0.8;
-}
-
-.alcohol-description {
-    font-family: var(--primary-font), serif;
-    font-size: 1.1rem;
-    color: rgba(255, 255, 255, 0.85);
-    line-height: 1.45;
-    font-style: italic;
-    margin: 0;
-}
-
-/* Список варіантів (Checkboxes) */
-.alcohol-form {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-}
-
-.alcohol-options {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    text-align: left;
-}
-
-.checkbox-label {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    cursor: pointer;
-    padding: 12px 14px;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 2px;
-    transition: all 0.3s ease;
-}
-
-.checkbox-label:hover {
-    background: rgba(255, 255, 255, 0.06);
-    border-color: rgba(255, 255, 255, 0.3);
-}
-
-.checkbox-label input[type="checkbox"] {
-    display: none;
-}
-
-/* Стилізація квадратного чекбокса */
-.custom-checkbox {
-    width: 15px;
-    height: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    border-radius: 2px;
-    display: inline-block;
-    position: relative;
-    flex-shrink: 0;
-    transition: all 0.3s ease;
-}
-
-.option-text {
-    font-family: var(--secondary-font), sans-serif;
-    font-size: 0.88rem;
-    color: rgba(255, 255, 255, 0.8);
-    font-weight: 300;
-    transition: color 0.3s ease;
-}
-
-/* Стан вибраного елемента */
-.checkbox-label input[type="checkbox"]:checked + .custom-checkbox {
-    background-color: #FFFFFF;
-    border-color: #FFFFFF;
-}
-
-.checkbox-label input[type="checkbox"]:checked + .custom-checkbox::after {
-    content: '✓';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -52%);
-    color: #000000;
-    font-size: 11px;
-    font-weight: bold;
-}
-
-.checkbox-label input[type="checkbox"]:checked ~ .option-text {
-    color: #FFFFFF;
-    font-weight: 400;
-}
-
-.checkbox-label:has(input[type="checkbox"]:checked) {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.4);
-}
-
-/* Біла кнопка у стилі RSVP */
-.alcohol-submit-btn {
-    margin-top: 6px;
-    background: transparent;
-    color: #FFFFFF;
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    padding: 16px;
-    font-family: var(--secondary-font), sans-serif;
-    font-size: 0.78rem;
-    letter-spacing: 4px;
-    cursor: pointer;
-    border-radius: 2px;
-    transition: all 0.4s ease;
-    width: 100%;
-}
-
-.alcohol-submit-btn:hover {
-    background: #FFFFFF;
-    color: #000000;
-    border-color: #FFFFFF;
-    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
-}
-
-/* Повідомлення про успіх */
-.alcohol-success-message {
-    font-family: var(--primary-font), serif;
-    font-size: 1.2rem;
-    text-align: center;
-    padding: 18px;
-    color: #FFFFFF;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 2px;
-    margin-top: 15px;
-    font-style: italic;
-}
-
-/* Стилі для поля введення імені у формі алкоголю */
-.alcohol-form .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    text-align: left;
-    margin-bottom: 8px;
-}
-
-.alcohol-form .form-group label {
-    font-family: var(--primary-font), serif;
-    font-size: 1.1rem;
-    color: #FFFFFF;
-    font-style: italic;
-    opacity: 0.9;
-}
-
-.alcohol-form .form-group input[type="text"] {
-    width: 100%;
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
-    padding: 10px 0;
-    color: #FFFFFF;
-    font-family: var(--secondary-font), sans-serif;
-    font-size: 0.9rem;
-    outline: none;
-    box-sizing: border-box;
-    transition: border-color 0.4s ease;
-}
-
-.alcohol-form .form-group input[type="text"]::placeholder {
-    color: rgba(255, 255, 255, 0.3);
-    font-weight: 300;
-}
-
-.alcohol-form .form-group input[type="text"]:focus {
-    border-bottom-color: #FFFFFF;
-}
 /* --- СЕКЦІЯ 10: ТАЙМЕР І ФІНАЛ --- */
-.final-section {
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: var(--site-bg-section);
-    padding: 50px 20px 10px 20px;
-}
-
-.final-container {
-    width: 100%;
-    max-width: 400px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.final-frame-outer {
-    width: 100%;
-    max-width: 430px;
-    height: 560px;
-    padding: 16px;
-    background: rgba(255, 255, 255, 0.7);
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 6px;
-    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
-    margin-bottom: 30px;
-}
-
+.final-section { width: 100%; min-height: 100vh; display: flex; justify-content: center; align-items: center; background: var(--site-bg-section); padding: 50px 20px 10px 20px; }
+.final-container { width: 100%; max-width: 400px; text-align: center; display: flex; flex-direction: column; align-items: center; }
+.final-frame-outer { width: 100%; max-width: 430px; height: 560px; padding: 16px; background: rgba(255, 255, 255, 0.7); border: 1px solid rgba(0, 0, 0, 0.1); border-radius: 6px; box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12); margin-bottom: 30px; }
 .final-frame-inner { width: 100%; height: 100%; overflow: hidden; border-radius: 2px; }
-
-.final-cursive {
-    font-family: var(--primary-font);
-    font-size: 1.8rem;
-    font-style: italic;
-    color: var(--site-text-dark);
-    margin-bottom: 20px;
-}
-
-.countdown-timer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    margin-bottom: 40px;
-}
-
+.final-cursive { font-family: var(--primary-font); font-size: 1.8rem; font-style: italic; color: var(--site-text-dark); margin-bottom: 20px; }
+.countdown-timer { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 40px; }
 .timer-item { display: flex; flex-direction: column; align-items: center; }
-
-.timer-number {
-    font-family: var(--primary-font);
-    font-size: 2.2rem;
-    color: var(--site-text-dark);
-    line-height: 1;
-}
-
-.timer-label {
-    font-family: var(--secondary-font);
-    font-size: 0.65rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--site-text-muted);
-    margin-top: 4px;
-}
-
-.timer-separator {
-    font-family: var(--primary-font);
-    font-size: 1.8rem;
-    color: var(--site-text-dark);
-    margin-top: -12px;
-}
-
-.final-signature p {
-    margin: 0;
-    font-family: var(--secondary-font);
-    font-size: 0.75rem;
-    letter-spacing: 3px;
-    color: var(--site-text-muted);
-}
-
-.final-signature .names {
-    font-family: var(--primary-font);
-    font-size: 1.8rem;
-    letter-spacing: 2px;
-    color: var(--site-text-dark);
-    margin-top: 6px;
-}
+.timer-number { font-family: var(--primary-font); font-size: 2.2rem; color: var(--site-text-dark); line-height: 1; }
+.timer-label { font-family: var(--secondary-font); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; color: var(--site-text-muted); margin-top: 4px; }
+.timer-separator { font-family: var(--primary-font); font-size: 1.8rem; color: var(--site-text-dark); margin-top: -12px; }
 
 /* СКРОЛЛ-АНІМАЦІЇ */
 .scrolled-into-view .photo-card { animation: revealCard 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
 .scrolled-into-view .photo-split-left { animation: mergeLeft 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards; }
 .scrolled-into-view .photo-split-right { animation: mergeRight 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards; }
-.scrolled-into-view .text-split-left { animation: mergeLeftText 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards; }
-.scrolled-into-view .text-split-right { animation: mergeRightText 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.7s forwards; }
 
 @keyframes popCenter { from { opacity: 0; transform: scale(0.85); } to { opacity: 1; transform: scale(1); } }
 @keyframes mergeLeft { from { opacity: 0; transform: translateX(-80px); } to { opacity: 1; transform: translateX(0); } }
 @keyframes mergeRight { from { opacity: 0; transform: translateX(80px); } to { opacity: 1; transform: translateX(0); } }
-@keyframes mergeLeftText { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
-@keyframes mergeRightText { from { opacity: 0; transform: translateX(50px); } to { opacity: 1; transform: translateX(0); } }
 @keyframes revealCard { from { opacity: 0; transform: translateY(35px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
 
 body.opened .hero-tagline { animation: fadeInText 1.2s ease-out 0.3s forwards; }
@@ -1665,96 +338,4 @@ body.opened .hero-date { animation: fadeInText 1.2s ease-out 1.5s forwards; }
 @keyframes pulseHint { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
 @keyframes bounceArrow { 0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-8px); } 60% { transform: translateY(-4px); } }
 
-.great-vibes-regular {
-  font-family: "Great Vibes", cursive;
-  font-weight: 400;
-  font-style: normal;
-}
-/* --- АНІМАЦІЯ ПОЯВИ --- */
-/* Проявляє мереживо при додаванні класу .opened до body */
-body.opened .hero-lace {
-    opacity: 1;
-}
-
-/* Легкий ефект пульсації/дихання (за бажанням, працює через фільтр прозорості) */
-body.opened .hero-lace {
-    animation: lacePulse 4s ease-in-out infinite alternate 1.2s;
-}
-
-@keyframes lacePulse {
-    0% {
-        opacity: 1;
-    }   
-    100% {
-        opacity: 0.85; /* Ніжне легке мерехтіння без руху геометрії */
-    }
-}
-
-/* Інтерактивні елементи-кнопки */
-.schedule-item.clickable {
-    cursor: pointer;
-    /* Створює фіксовану область для курсора, щоб запобігти смиканню */
-    position: relative;
-}
-
-.schedule-item.clickable .schedule-icon-box,
-.schedule-item.clickable .schedule-time,
-.schedule-item.clickable .schedule-label,
-.schedule-item.clickable .schedule-action-btn {
-    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), color 0.3s ease, border-color 0.3s ease;
-    will-change: transform;
-}
-
-.schedule-item.clickable:hover {
-    transform: translateY(-5px) !important;
-}
-
-.schedule-item.clickable:active {
-    transform: translateY(-2px) scale(0.98) !important;
-}
-
-/* Кнопка-підказка під текстом */
-.schedule-action-btn {
-    margin-top: 8px;
-    font-family: var(--secondary-font), sans-serif;
-    font-size: 0.65rem;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.9);
-    border-bottom: 1px dashed rgba(255, 255, 255, 0.4);
-    padding-bottom: 2px;
-    transition: all 0.3s ease;
-}
-
-.schedule-item.clickable:hover .schedule-action-btn {
-    color: #FFFFFF;
-    border-bottom-color: #FFFFFF;
-}
-.schedule-item.clickable:hover .schedule-icon-box {
-    transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.12);
-    border-color: rgba(255, 255, 255, 0.5);
-}
-.schedule-item.clickable:hover .schedule-action-btn {
-    transform: translateY(-2px);
-    color: #FFFFFF;
-    border-bottom-color: #FFFFFF;
-}
-
-/* Кнопка-підказка під текстом */
-.schedule-action-btn {
-    display: inline-block;
-    margin-top: 8px;
-    font-family: var(--secondary-font), sans-serif;
-    font-size: 0.65rem;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.9);
-    border-bottom: 1px dashed rgba(255, 255, 255, 0.4);
-    padding-bottom: 2px;
-}
-
-.schedule-item.clickable:active .schedule-icon-box,
-.schedule-item.clickable:active .schedule-action-btn {
-    transform: translateY(0) scale(0.96);
-}
+.great-vibes-regular { font-family: "Great Vibes", cursive; font-weight: 400; font-style: normal; }

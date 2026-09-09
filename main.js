@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // ==========================================
     // 1. КОНФІГУРАЦІЯ GOOGLE ФОРМ
     // ==========================================
-    // Замініть посилання нижче на власні (в кінці має бути /formResponse)
     const RSVP_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdGCZhZwP1ghQTB581Zcktf7teKajd_Wpxdh0-Fzmz5uhXXFQ/formResponse";
     const ALCOHOL_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSd60HAvjVk1buz9NNzAwVy5S1mUpUQRXOFt7K7uKfhQFts3ug/formResponse";
 
@@ -77,101 +76,68 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ==========================================
-    // 5. ВІДПРАВКА ФОРМИ RSVP
+    // 5. ВІДПРАВКА ФОРМ (ОПТИМІЗОВАНА ФУНКЦІЯ)
     // ==========================================
-    const rsvpForm = document.getElementById("rsvpForm");
-    const rsvpSuccessMsg = document.getElementById("rsvpSuccessMessage");
+    function handleFormSubmit(formId, url, successMsgId) {
+        const form = document.getElementById(formId);
+        const successMsg = document.getElementById(successMsgId);
 
-    if (rsvpForm) {
-        rsvpForm.addEventListener("submit", (e) => {
+        if (!form) return;
+
+        form.addEventListener("submit", (e) => {
             e.preventDefault();
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerText;
+            
+            // Стан завантаження (UX)
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span style="opacity: 0.7;">Надсилання...</span>';
+            submitBtn.style.cursor = 'wait';
 
-            const submitBtn = rsvpForm.querySelector('button[type="submit"]');
-            if (submitBtn) {
-                submitBtn.disabled = true;
-                submitBtn.innerText = 'Надсилання...';
-            }
-
-            const formData = new FormData(rsvpForm);
-
-            fetch(RSVP_FORM_URL, {
+            fetch(url, {
                 method: "POST",
                 mode: "no-cors",
-                body: formData
+                body: new FormData(form)
             })
             .then(() => {
-                rsvpForm.reset();
-                rsvpForm.style.display = "none";
-                if (rsvpSuccessMsg) {
-                    rsvpSuccessMsg.classList.remove("hidden");
-                    rsvpSuccessMsg.style.display = "block";
-                }
+                form.style.opacity = '0';
+                setTimeout(() => {
+                    form.style.display = "none";
+                    if (successMsg) {
+                        successMsg.style.display = "block";
+                        // Плавна поява повідомлення
+                        successMsg.animate([{opacity: 0}, {opacity: 1}], {duration: 500, fill: 'forwards'});
+                    }
+                }, 400);
             })
             .catch((error) => {
-                alert("Сталася помилка при відправці. Спробуйте ще раз.");
-                console.error("Помилка RSVP:", error);
-                if (submitBtn) {
-                    submitBtn.disabled = false;
-                    submitBtn.innerText = 'ПІДТВЕРДИТИ УЧАСТЬ';
-                }
+                alert("Помилка з'єднання. Перевірте інтернет та спробуйте ще раз.");
+                console.error("Form error:", error);
+                submitBtn.disabled = false;
+                submitBtn.innerText = originalText;
+                submitBtn.style.cursor = 'pointer';
             });
         });
     }
 
-    // ==========================================
-    // 6. ВІДПРАВКА ФОРМИ АЛКОГОЛЮ
-    // ==========================================
-    const alcoholForm = document.getElementById("alcoholForm");
-    const alcoholSuccessMsg = document.getElementById("alcoholSuccessMessage");
-
-    if (alcoholForm) {
-        alcoholForm.addEventListener("submit", (e) => {
-            e.preventDefault();
-
-            const submitBtn = alcoholForm.querySelector('button[type="submit"]');
-            if (submitBtn) {
-                submitBtn.disabled = true;
-                submitBtn.innerText = 'Збереження...';
-            }
-
-            const formData = new FormData(alcoholForm);
-
-            fetch(ALCOHOL_FORM_URL, {
-                method: "POST",
-                mode: "no-cors",
-                body: formData
-            })
-            .then(() => {
-                alcoholForm.reset();
-                alcoholForm.style.display = "none";
-                if (alcoholSuccessMsg) {
-                    alcoholSuccessMsg.classList.remove("hidden");
-                    alcoholSuccessMsg.style.display = "block";
-                }
-            })
-            .catch((error) => {
-                alert("Сталася помилка при відправці. Спробуйте ще раз.");
-                console.error("Помилка алкогольної форми:", error);
-                if (submitBtn) {
-                    submitBtn.disabled = false;
-                    submitBtn.innerText = 'ЗБЕРЕГТИ ПОБАЖАННЯ';
-                }
-            });
-        });
-    }
+    handleFormSubmit("rsvpForm", RSVP_FORM_URL, "rsvpSuccessMessage");
+    handleFormSubmit("alcoholForm", ALCOHOL_FORM_URL, "alcoholSuccessMessage");
 
     // ==========================================
-    // 7. ЗВОРОТНИЙ ВІДЛІК ДО ВЕСІЛЛЯ (24.10.2026)
+    // 6. ЗВОРОТНИЙ ВІДЛІК ДО ВЕСІЛЛЯ (ОПТИМІЗОВАНО)
     // ==========================================
     const targetDate = new Date("2026-10-24T15:00:00").getTime();
+    
+    // Кешуємо елементи DOM ОДИН РАЗ (економить ресурси браузера)
+    const timerElements = {
+        days: document.getElementById("days"),
+        hours: document.getElementById("hours"),
+        minutes: document.getElementById("minutes"),
+        seconds: document.getElementById("seconds")
+    };
 
     function updateTimer() {
-        const daysEl = document.getElementById("days");
-        const hoursEl = document.getElementById("hours");
-        const minutesEl = document.getElementById("minutes");
-        const secondsEl = document.getElementById("seconds");
-
-        if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
+        if (!timerElements.days) return;
 
         const now = new Date().getTime();
         const difference = targetDate - now;
@@ -182,23 +148,24 @@ document.addEventListener("DOMContentLoaded", () => {
             const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-            daysEl.innerText = days < 10 ? '0' + days : days;
-            hoursEl.innerText = hours < 10 ? '0' + hours : hours;
-            minutesEl.innerText = minutes < 10 ? '0' + minutes : minutes;
-            secondsEl.innerText = seconds < 10 ? '0' + seconds : seconds;
+            timerElements.days.textContent = days < 10 ? '0' + days : days;
+            timerElements.hours.textContent = hours < 10 ? '0' + hours : hours;
+            timerElements.minutes.textContent = minutes < 10 ? '0' + minutes : minutes;
+            timerElements.seconds.textContent = seconds < 10 ? '0' + seconds : seconds;
         } else {
-            daysEl.innerText = "00";
-            hoursEl.innerText = "00";
-            minutesEl.innerText = "00";
-            secondsEl.innerText = "00";
+            clearInterval(timerInterval);
+            timerElements.days.textContent = "00";
+            timerElements.hours.textContent = "00";
+            timerElements.minutes.textContent = "00";
+            timerElements.seconds.textContent = "00";
         }
     }
 
-    setInterval(updateTimer, 1000);
+    const timerInterval = setInterval(updateTimer, 1000);
     updateTimer();
 
     // ==========================================
-    // 8. КЛІКАБЕЛЬНІСТЬ ЕЛЕМЕНТІВ ТАЙМІНГУ
+    // 7. КЛІКАБЕЛЬНІСТЬ ЕЛЕМЕНТІВ ТАЙМІНГУ
     // ==========================================
     const clickableScheduleItems = document.querySelectorAll('.schedule-item.clickable');
 
