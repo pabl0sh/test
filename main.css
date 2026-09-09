@@ -1510,6 +1510,45 @@ html, body {
     font-style: italic;
 }
 
+/* Стилі для поля введення імені у формі алкоголю */
+.alcohol-form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: left;
+    margin-bottom: 8px;
+}
+
+.alcohol-form .form-group label {
+    font-family: var(--primary-font), serif;
+    font-size: 1.1rem;
+    color: #FFFFFF;
+    font-style: italic;
+    opacity: 0.9;
+}
+
+.alcohol-form .form-group input[type="text"] {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 10px 0;
+    color: #FFFFFF;
+    font-family: var(--secondary-font), sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.4s ease;
+}
+
+.alcohol-form .form-group input[type="text"]::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+    font-weight: 300;
+}
+
+.alcohol-form .form-group input[type="text"]:focus {
+    border-bottom-color: #FFFFFF;
+}
 /* --- СЕКЦІЯ 10: ТАЙМЕР І ФІНАЛ --- */
 .final-section {
     width: 100%;
