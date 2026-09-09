@@ -754,7 +754,7 @@ html, body {
     box-shadow: 0 0 0 3px rgba(44, 44, 44, 0.4);
 }
 
-/* --- СЕКЦІЯ 6: ТАЙМІНГ ДНЯ (High-End Redesign) --- */
+/* --- СЕКЦІЯ 6: ТАЙМІНГ ДНЯ (3 елементи / Luxury Timeline) --- */
 .schedule-section {
     position: relative;
     width: 100%;
@@ -763,12 +763,11 @@ html, body {
     justify-content: center;
     align-items: center;
     background: url(background.jpg) no-repeat center center/cover;
-    padding: 90px 20px;
+    padding: 80px 20px;
     box-sizing: border-box;
     overflow: hidden;
 }
 
-/* Дизайнерський оверлей: глибокий градієнт з м'яким затемненням */
 .schedule-overlay {
     position: absolute;
     top: 0;
@@ -780,8 +779,8 @@ html, body {
         rgba(15, 2, 6, 0.5) 0%, 
         rgba(5, 1, 2, 0.88) 100%
     );
-    backdrop-filter: blur(1px);
-    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
     z-index: 1;
 }
 
@@ -789,14 +788,14 @@ html, body {
     position: relative;
     z-index: 2;
     width: 100%;
-    max-width: 440px;
+    max-width: 380px;
     text-align: center;
     color: #FFFFFF;
 }
 
-/* Шапка секції */
+/* Шапка */
 .schedule-header {
-    margin-bottom: 45px;
+    margin-bottom: 40px;
 }
 
 .schedule-subtitle {
@@ -812,7 +811,7 @@ html, body {
 
 .schedule-title {
     font-family: var(--primary-font), serif;
-    font-size: 2.8rem;
+    font-size: 2.6rem;
     font-weight: 400;
     letter-spacing: 3px;
     color: #FFFFFF;
@@ -840,20 +839,20 @@ html, body {
     opacity: 0.8;
 }
 
-/* Сітка таймінгу */
-.schedule-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px 24px;
+/* Вертикальний список */
+.schedule-list {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
     position: relative;
 }
 
-/* Вертикальна лінія-розділювач по центру сітки */
-.schedule-grid::before {
+/* Вертикальна вісь між елементами */
+.schedule-list::before {
     content: '';
     position: absolute;
-    top: 15px;
-    bottom: 15px;
+    top: 30px;
+    bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
     width: 1px;
@@ -865,34 +864,41 @@ html, body {
         transparent
     );
     pointer-events: none;
+    z-index: 0;
 }
 
-/* Картка події */
+/* Картка елемента */
 .schedule-item {
     display: flex;
     flex-direction: column;
     align-items: center;
     position: relative;
+    z-index: 1;
     opacity: 0;
+    transform: translateY(30px);
     will-change: transform, opacity;
 }
 
-/* Іконка в круглій скляній рамці */
+.schedule-item.clickable {
+    cursor: pointer;
+}
+
+/* Іконка в скляному колі */
 .schedule-icon-box {
     width: 58px;
     height: 58px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
+    background: rgba(15, 2, 6, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
     color: #FFFFFF;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-    transition: all 0.4s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), background 0.3s ease, border-color 0.3s ease;
 }
 
 .schedule-icon-box svg {
@@ -901,55 +907,76 @@ html, body {
     stroke: #FFFFFF;
 }
 
-.schedule-item:hover .schedule-icon-box {
-    background: rgba(255, 255, 255, 0.12);
-    border-color: rgba(255, 255, 255, 0.5);
-    transform: translateY(-3px);
+.schedule-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .schedule-time {
     font-family: var(--primary-font), serif;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     letter-spacing: 1.5px;
     color: #FFFFFF;
-    margin-bottom: 4px;
+    margin-bottom: 2px;
     font-weight: 500;
 }
 
 .schedule-label {
     font-family: var(--secondary-font), sans-serif;
-    font-size: 0.75rem;
+    font-size: 0.78rem;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.75);
     font-weight: 300;
 }
 
-/* Анімації появи */
-.schedule-item:nth-child(odd) { transform: translateX(-30px); }
-.schedule-item:nth-child(even) { transform: translateX(30px); }
-
-.schedule-section.scrolled-into-view .schedule-item:nth-child(odd) {
-    animation: scheduleSlideInLeft 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+/* Кнопка-посилання під текстом */
+.schedule-action-btn {
+    display: inline-block;
+    margin-top: 6px;
+    font-family: var(--secondary-font), sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.9);
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.4);
+    padding-bottom: 2px;
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), color 0.3s ease, border-color 0.3s ease;
 }
 
-.schedule-section.scrolled-into-view .schedule-item:nth-child(even) {
-    animation: scheduleSlideInRight 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+/* Ефекти наведення без миготіння */
+.schedule-item.clickable:hover .schedule-icon-box {
+    transform: translateY(-4px);
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.6);
 }
 
-.schedule-section.scrolled-into-view .schedule-item:nth-child(1),
-.schedule-section.scrolled-into-view .schedule-item:nth-child(2) { animation-delay: 0.2s; }
-.schedule-section.scrolled-into-view .schedule-item:nth-child(3),
-.schedule-section.scrolled-into-view .schedule-item:nth-child(4) { animation-delay: 0.4s; }
-.schedule-section.scrolled-into-view .schedule-item:nth-child(5),
-.schedule-section.scrolled-into-view .schedule-item:nth-child(6) { animation-delay: 0.6s; }
-
-@keyframes scheduleSlideInLeft {
-    to { opacity: 1; transform: translateX(0); }
+.schedule-item.clickable:hover .schedule-action-btn {
+    transform: translateY(-2px);
+    color: #FFFFFF;
+    border-bottom-color: #FFFFFF;
 }
 
-@keyframes scheduleSlideInRight {
-    to { opacity: 1; transform: translateX(0); }
+.schedule-item.clickable:active .schedule-icon-box,
+.schedule-item.clickable:active .schedule-action-btn {
+    transform: translateY(0) scale(0.96);
+}
+
+/* Анімація появи знизу вгору по черзі */
+.schedule-section.scrolled-into-view .schedule-item {
+    animation: scheduleFadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.schedule-section.scrolled-into-view .schedule-item:nth-child(1) { animation-delay: 0.2s; }
+.schedule-section.scrolled-into-view .schedule-item:nth-child(2) { animation-delay: 0.4s; }
+.schedule-section.scrolled-into-view .schedule-item:nth-child(3) { animation-delay: 0.6s; }
+
+@keyframes scheduleFadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* --- СЕКЦІЯ 7: DRESS CODE --- */
@@ -1261,6 +1288,22 @@ html, body {
     color: #000000;
     border-color: #FFFFFF;
     box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+}
+
+/* Повідомлення про успіх у стилі секції RSVP */
+.rsvp-success-message {
+    font-family: var(--primary-font), serif;
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 18px;
+    color: #FFFFFF;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+    margin-top: 15px;
+    font-style: italic;
+    box-sizing: border-box;
+    line-height: 1.4;
 }
 /* --- СЕКЦІЯ НАПОЇ ТА АЛКОГОЛЬ (Монохромна біла палітра) --- */
 .alcohol-section {

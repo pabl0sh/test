@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Запрошення на весілля | Михайло & Лариса</title>
-    
+    <link rel="icon" href="favicon.png" type="image/png">
+
+
     <link rel="stylesheet" href="main.css">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -151,7 +153,7 @@
         </div>
     </section>
 
-  <!-- SCHEDULE SECTION -->
+<!-- SCHEDULE SECTION -->
 <section class="schedule-section" id="schedule-section">
     <!-- Багатошаровий преміальний оверлей -->
     <div class="schedule-overlay"></div>
@@ -168,101 +170,62 @@
             </div>
         </div>
 
-        <!-- Сітка елементів -->
-        <div class="schedule-grid">
-    
-    <!-- 1. WELCOME DRINK (З посиланням) -->
-    <div class="schedule-item clickable" data-link="https://maps.app.goo.gl/MDcaHuzs5EnwkB5G9">
-        <div class="schedule-icon-box">
-            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8">
-                <path d="M18 12 L28 12 L23 32 L23 52 M17 52 L29 52" />
-                <path d="M38 8 L50 8 L44 28 L44 52 M38 52 L50 52" />
-                <path d="M12 20 C20 18, 26 22, 32 20" stroke-dasharray="2 2" />
-            </svg>
-        </div>
-        <span class="schedule-time">10:00</span>
-        <span class="schedule-label">WELCOME DRINK</span>
-        <span class="schedule-action-btn">Показати на карті ➔</span>
-    </div>
+        <!-- Вертикальний список для 3 елементів -->
+        <div class="schedule-list">
+            
+            <!-- 1. WELCOME DRINK -->
+            <div class="schedule-item clickable" data-link="https://maps.app.goo.gl/MDcaHuzs5EnwkB5G9">
+                <div class="schedule-icon-box">
+                    <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M18 12 L28 12 L23 32 L23 52 M17 52 L29 52" />
+                        <path d="M38 8 L50 8 L44 28 L44 52 M38 52 L50 52" />
+                        <path d="M12 20 C20 18, 26 22, 32 20" stroke-dasharray="2 2" />
+                    </svg>
+                </div>
+                <div class="schedule-content">
+                    <span class="schedule-time">10:00</span>
+                    <span class="schedule-label">WELCOME DRINK</span>
+                    <span class="schedule-action-btn">Показати на карті ➔</span>
+                </div>
+            </div>
 
-    <!-- 2. ВІНЧАННЯ (З посиланням) -->
-    <div class="schedule-item clickable" data-link="https://maps.app.goo.gl/YHiPeYxTeSJxBRYN9">
-        <div class="schedule-icon-box">
-            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8">
-                <rect x="18" y="24" width="28" height="26" rx="4" />
-                <path d="M18 32 L46 32" />
-                <path d="M26 24 C26 16, 38 16, 38 24" />
-                <circle cx="32" cy="20" r="3" />
-            </svg>
-        </div>
-        <span class="schedule-time">15:00</span>
-        <span class="schedule-label">ВІНЧАННЯ</span>
-        <span class="schedule-action-btn">Показати на карті ➔</span>
-    </div>
+            <!-- 2. ВІНЧАННЯ -->
+            <div class="schedule-item clickable" data-link="https://maps.app.goo.gl/YHiPeYxTeSJxBRYN9">
+                <div class="schedule-icon-box">
+                    <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <rect x="18" y="24" width="28" height="26" rx="4" />
+                        <path d="M18 32 L46 32" />
+                        <path d="M26 24 C26 16, 38 16, 38 24" />
+                        <circle cx="32" cy="20" r="3" />
+                    </svg>
+                </div>
+                <div class="schedule-content">
+                    <span class="schedule-time">15:00</span>
+                    <span class="schedule-label">ВІНЧАННЯ</span>
+                    <span class="schedule-action-btn">Показати на карті ➔</span>
+                </div>
+            </div>
 
-    <!-- 3. БАНКЕТ (Звичайний елемент БЕЗ КЛІКУ) -->
-    <div class="schedule-item">
-        <div class="schedule-icon-box">
-            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8">
-                <circle cx="32" cy="32" r="20" />
-                <circle cx="32" cy="32" r="13" />
-                <path d="M10 16 L10 48 M14 16 L14 28 M6 16 L6 28" />
-                <path d="M54 16 L54 48 M50 16 L54 28" />
-            </svg>
-        </div>
-        <span class="schedule-time">17:00</span>
-        <span class="schedule-label">БАНКЕТ</span>
-    </div>
+            <!-- 3. БАНКЕТ -->
+            <div class="schedule-item clickable" data-link="https://maps.app.goo.gl/13PJkfa9r1PXG35X7">
+                <div class="schedule-icon-box">
+                    <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <circle cx="32" cy="32" r="20" />
+                        <circle cx="32" cy="32" r="13" />
+                        <path d="M10 16 L10 48 M14 16 L14 28 M6 16 L6 28" />
+                        <path d="M54 16 L54 48 M50 16 L54 28" />
+                    </svg>
+                </div>
+                <div class="schedule-content">
+                    <span class="schedule-time">17:00</span>
+                    <span class="schedule-label">БАНКЕТ</span>
+                    <span class="schedule-action-btn">Показати на карті ➔</span>
+                </div>
+            </div>
 
-    <!-- 4. ТОРТ (Звичайний елемент БЕЗ КЛІКУ) -->
-    <div class="schedule-item">
-        <div class="schedule-icon-box">
-            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8">
-                <path d="M22 22 L42 22 L40 32 L24 32 Z" />
-                <path d="M16 32 L48 32 L46 46 L18 46 Z" />
-                <path d="M10 46 L54 46 L52 52 L12 52 Z" />
-                <path d="M32 14 C32 14, 30 18, 32 22" />
-            </svg>
         </div>
-        <span class="schedule-time">21:00</span>
-        <span class="schedule-label">ТОРТ</span>
-    </div>
-
-    <!-- 5. ЗАВЕРШЕННЯ (Звичайний елемент БЕЗ КЛІКУ) -->
-    <div class="schedule-item">
-        <div class="schedule-icon-box">
-            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8">
-                <path d="M32 40 L32 18 M32 40 L20 50 M32 40 L44 50 M32 40 L18 32 M32 40 L46 32" />
-                <circle cx="32" cy="14" r="2" fill="currentColor" />
-                <circle cx="16" cy="28" r="1.5" fill="currentColor" />
-                <circle cx="48" cy="28" r="1.5" fill="currentColor" />
-                <circle cx="22" cy="48" r="1.5" fill="currentColor" />
-                <circle cx="42" cy="48" r="1.5" fill="currentColor" />
-            </svg>
-        </div>
-        <span class="schedule-time">23:00</span>
-        <span class="schedule-label">ЗАВЕРШЕННЯ</span>
-    </div>
-
-    <!-- 6. AFTER PARTY (З посиланням) -->
-    <div class="schedule-item" data-link="https://t.me/your_chat_or_map">
-        <div class="schedule-icon-box">
-            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8">
-                <circle cx="32" cy="34" r="18" />
-                <path d="M32 8 L32 16" />
-                <path d="M18 34 L46 34 M32 16 L32 52" />
-                <path d="M20 24 C26 28, 38 28, 44 24" />
-                <path d="M20 44 C26 40, 38 40, 44 44" />
-            </svg>
-        </div>
-        <span class="schedule-time">00:00</span>
-        <span class="schedule-label">AFTER PARTY</span>
-    </div>
-
-</div>
     </div>
 </section>
-
     <!-- DRESSCODE SECTION -->
     <section class="dresscode-section" id="dresscode-section">
         <div class="dresscode-container">
@@ -314,19 +277,19 @@
             
             <div class="form-group">
                 <label for="fullName">Ваше ім'я та прізвище *</label>
-                <input type="text" id="fullName" name="entry.111111111" placeholder="Введіть повне ім'я" required>
+                <input type="text" id="fullName" name="entry.1909591273" placeholder="Введіть повне ім'я" required>
             </div>
 
             <div class="form-group">
                 <label>Ваша присутність</label>
                 <div class="radio-group">
                     <label class="radio-label">
-                        <input type="radio" name="entry.222222222" value="Так, з радістю!" required>
+                        <input type="radio" name="entry.177743937" value="Так, з радістю!" required>
                         <span class="custom-radio"></span>
                         <span class="radio-text">Так, з радістю розділю свято!</span>
                     </label>
                     <label class="radio-label">
-                        <input type="radio" name="entry.222222222" value="Ні, на жаль не вийде">
+                        <input type="radio" name="entry.177743937" value="Ні, на жаль не вийде">
                         <span class="custom-radio"></span>
                         <span class="radio-text">На жаль, не можу бути</span>
                     </label>
@@ -335,7 +298,7 @@
 
             <div class="form-group">
                 <label for="familyMembers">З ким ви будете? (Імена супроводжуючих)</label>
-                <textarea id="familyMembers" name="entry.333333333" placeholder="Зазначте імена інших гостей" rows="2"></textarea>
+                <textarea id="familyMembers" name="entry.163951541" placeholder="Зазначте імена інших гостей" rows="2"></textarea>
             </div>
 
             <button type="submit" class="rsvp-submit-btn" id="submitBtn">
@@ -374,31 +337,31 @@
             <div class="alcohol-options">
                 
                 <label class="checkbox-label">
-                    <input type="checkbox" name="entry.444444444" value="Ігристе / Шампанське">
+                    <input type="checkbox" name="entry.1679428094" value="Ігристе / Шампанське">
                     <span class="custom-checkbox"></span>
                     <span class="option-text">Ігристе / Шампанське</span>
                 </label>
 
                 <label class="checkbox-label">
-                    <input type="checkbox" name="entry.444444444" value="Вино">
+                    <input type="checkbox" name="entry.1679428094" value="Вино">
                     <span class="custom-checkbox"></span>
                     <span class="option-text">Вино</span>
                 </label>
 
                 <label class="checkbox-label">
-                    <input type="checkbox" name="entry.444444444" value="Віскі">
+                    <input type="checkbox" name="entry.1679428094" value="Віскі">
                     <span class="custom-checkbox"></span>
                     <span class="option-text">Віскі</span>
                 </label>
 
                 <label class="checkbox-label">
-                    <input type="checkbox" name="entry.444444444" value="Горілка">
+                    <input type="checkbox" name="entry.1679428094" value="Горілка">
                     <span class="custom-checkbox"></span>
                     <span class="option-text">Горілка</span>
                 </label>
 
                 <label class="checkbox-label">
-                    <input type="checkbox" name="entry.444444444" value="Коньяк">
+                    <input type="checkbox" name="entry.1679428094" value="Коньяк">
                     <span class="custom-checkbox"></span>
                     <span class="option-text">Коньяк</span>
                 </label>

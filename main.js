@@ -1,5 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. Управління фоновою музикою
+    // ==========================================
+    // 1. КОНФІГУРАЦІЯ GOOGLE ФОРМ
+    // ==========================================
+    // Замініть посилання нижче на власні (в кінці має бути /formResponse)
+    const RSVP_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdGCZhZwP1ghQTB581Zcktf7teKajd_Wpxdh0-Fzmz5uhXXFQ/formResponse";
+    const ALCOHOL_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSd60HAvjVk1buz9NNzAwVy5S1mUpUQRXOFt7K7uKfhQFts3ug/formResponse";
+
+    // ==========================================
+    // 2. УПРАВЛІННЯ ФОНОВОЮ МУЗИКОЮ
+    // ==========================================
     const bgMusic = document.getElementById("bgMusic");
     const musicToggle = document.getElementById("musicToggle");
     let isPlaying = false;
@@ -25,7 +34,9 @@ document.addEventListener("DOMContentLoaded", () => {
         musicToggle.addEventListener("click", toggleMusic);
     }
 
-    // 2. Інтерактив з конвертом
+    // ==========================================
+    // 3. ІНТЕРАКТИВ З КОНВЕРТОМ
+    // ==========================================
     const envelopeWrapper = document.getElementById("envelope-wrapper");
     const overlay = document.getElementById("envelope-overlay");
 
@@ -45,7 +56,9 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 3. Спостерігач за появою секцій при скролі (ДОДАНО #alcohol-section)
+    // ==========================================
+    // 4. СПОСТЕРІГАЧ ЗА ПОЯВОЮ СЕКЦІЙ ПРИ СКРОЛІ
+    // ==========================================
     const animatedSections = document.querySelectorAll(
         "#invitation-section, #photo-section, #location-section, #schedule-section, #dresscode-section, #rsvp-section, #alcohol-section, #final-section"
     );
@@ -63,67 +76,93 @@ document.addEventListener("DOMContentLoaded", () => {
         animatedSections.forEach(section => observer.observe(section));
     }
 
-    // 4. Відправка RSVP форми
+    // ==========================================
+    // 5. ВІДПРАВКА ФОРМИ RSVP
+    // ==========================================
     const rsvpForm = document.getElementById("rsvpForm");
-    const successMsg = document.getElementById("rsvpSuccessMessage");
+    const rsvpSuccessMsg = document.getElementById("rsvpSuccessMessage");
 
     if (rsvpForm) {
         rsvpForm.addEventListener("submit", (e) => {
             e.preventDefault();
-            const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/ВАШ_ID_ФОРМИ/formResponse";
+
+            const submitBtn = rsvpForm.querySelector('button[type="submit"]');
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.innerText = 'Надсилання...';
+            }
+
             const formData = new FormData(rsvpForm);
 
-            fetch(GOOGLE_FORM_URL, {
+            fetch(RSVP_FORM_URL, {
                 method: "POST",
                 mode: "no-cors",
                 body: formData
             })
             .then(() => {
                 rsvpForm.reset();
-                rsvpForm.style.display = "none"; // Гарантовано ховаємо форму
-                if (successMsg) {
-                    successMsg.classList.remove("hidden");
-                    successMsg.style.display = "block"; // Гарантовано показуємо повідомлення
+                rsvpForm.style.display = "none";
+                if (rsvpSuccessMsg) {
+                    rsvpSuccessMsg.classList.remove("hidden");
+                    rsvpSuccessMsg.style.display = "block";
                 }
             })
             .catch((error) => {
-                alert("Помилка відправки. Спробуйте ще раз.");
-                console.error(error);
+                alert("Сталася помилка при відправці. Спробуйте ще раз.");
+                console.error("Помилка RSVP:", error);
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.innerText = 'ПІДТВЕРДИТИ УЧАСТЬ';
+                }
             });
         });
     }
 
-    // 5. Відправка форми алкоголю
+    // ==========================================
+    // 6. ВІДПРАВКА ФОРМИ АЛКОГОЛЮ
+    // ==========================================
     const alcoholForm = document.getElementById("alcoholForm");
     const alcoholSuccessMsg = document.getElementById("alcoholSuccessMessage");
 
     if (alcoholForm) {
         alcoholForm.addEventListener("submit", (e) => {
             e.preventDefault();
-            const GOOGLE_ALCOHOL_FORM_URL = "https://docs.google.com/forms/d/e/ВАШ_ID_ДРУГОЇ_ФОРМИ/formResponse";
+
+            const submitBtn = alcoholForm.querySelector('button[type="submit"]');
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.innerText = 'Збереження...';
+            }
+
             const formData = new FormData(alcoholForm);
 
-            fetch(GOOGLE_ALCOHOL_FORM_URL, {
+            fetch(ALCOHOL_FORM_URL, {
                 method: "POST",
                 mode: "no-cors",
                 body: formData
             })
             .then(() => {
                 alcoholForm.reset();
-                alcoholForm.style.display = "none"; // Гарантовано ховаємо форму
+                alcoholForm.style.display = "none";
                 if (alcoholSuccessMsg) {
                     alcoholSuccessMsg.classList.remove("hidden");
-                    alcoholSuccessMsg.style.display = "block"; // Гарантовано показуємо повідомлення
+                    alcoholSuccessMsg.style.display = "block";
                 }
             })
             .catch((error) => {
-                alert("Помилка відправки. Спробуйте ще раз.");
-                console.error(error);
+                alert("Сталася помилка при відправці. Спробуйте ще раз.");
+                console.error("Помилка алкогольної форми:", error);
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.innerText = 'ЗБЕРЕГТИ ПОБАЖАННЯ';
+                }
             });
         });
     }
 
-    // 6. Зворотний відлік до весілля (24.10.2026)
+    // ==========================================
+    // 7. ЗВОРОТНИЙ ВІДЛІК ДО ВЕСІЛЛЯ (24.10.2026)
+    // ==========================================
     const targetDate = new Date("2026-10-24T15:00:00").getTime();
 
     function updateTimer() {
@@ -158,14 +197,16 @@ document.addEventListener("DOMContentLoaded", () => {
     setInterval(updateTimer, 1000);
     updateTimer();
 
-        // Клікабельність елементів таймінгу
+    // ==========================================
+    // 8. КЛІКАБЕЛЬНІСТЬ ЕЛЕМЕНТІВ ТАЙМІНГУ
+    // ==========================================
     const clickableScheduleItems = document.querySelectorAll('.schedule-item.clickable');
 
     clickableScheduleItems.forEach(item => {
         item.addEventListener('click', () => {
             const link = item.getAttribute('data-link');
             if (link) {
-                window.open(link, '_blank'); // Відкриває посилання в новій вкладці
+                window.open(link, '_blank');
             }
         });
     });
